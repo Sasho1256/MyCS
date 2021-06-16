@@ -30,5 +30,7 @@ namespace Database
         [Column("Client_Id")]
         public int Client_Id { get; set; }
         public virtual Client Client { get; set; }
+
+        public virtual ICollection<Loan> Loans { get; set; }
     }
 }
