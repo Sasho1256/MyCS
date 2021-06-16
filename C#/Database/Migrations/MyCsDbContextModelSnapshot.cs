@@ -17,19 +17,130 @@ namespace Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.7");
 
+            modelBuilder.Entity("Database.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Account_Number")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Account_Type")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Bureau_Score")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Cheque_Card_Flag")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("Client_Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Client_Id");
+
+                    b.Property<string>("Existing_Customer_Flag")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("Final_Decision")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Insurance_Required")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("Number_of_Dependants")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Number_of_Payments")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Promotion_Type")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("SP_ER_Reference")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SP_Number_Of_Searches_L6M")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SP_Number_of_CCJs")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Weight_Factor")
+                        .HasColumnType("double");
+
+                    b.Property<string>("split")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Client_Id");
+
+                    b.ToTable("Accounts");
+                });
+
             modelBuilder.Entity("Database.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Age")
+                    b.Property<int>("Account_Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Account_Id");
+
+                    b.Property<int>("Age_of_Applicant")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("Application_Date")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Application_Month")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Application_Score")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("Current_Delinquency_status")
+                        .HasColumnType("tinyint unsigned");
+
+                    b.Property<string>("GB_Flag")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Gross_Annual_Income")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Home_Telephone_Number")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("Marital_Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("Occupation_Code")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("Residential_Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<int>("Time_at_Address")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Time_in_Employment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Time_with_Bank")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Account_Id");
 
                     b.ToTable("Clients");
                 });
@@ -224,6 +335,28 @@ namespace Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Database.Account", b =>
+                {
+                    b.HasOne("Database.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("Client_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("Database.Client", b =>
+                {
+                    b.HasOne("Database.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("Account_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

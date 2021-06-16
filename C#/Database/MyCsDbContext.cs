@@ -19,6 +19,7 @@ namespace Database
 
         //dbset
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
