@@ -7,11 +7,11 @@ namespace Database
     {
         [Ignore]
         public int Id { get; set; }
-        public byte Current_Delinquency_status { get; set; }
+        public byte? Current_Delinquency_status { get; set; }
         public int Application_Date { get; set; }
         public int Application_Score { get; set; }
         public int Gross_Annual_Income { get; set; }
-        public char Home_Telephone_Number { get; set; }
+        public char? Home_Telephone_Number { get; set; }
         public char Marital_Status { get; set; }
         public char Occupation_Code { get; set; }
         public char Residential_Status { get; set; }

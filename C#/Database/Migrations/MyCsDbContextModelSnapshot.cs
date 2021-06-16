@@ -33,7 +33,6 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Cheque_Card_Flag")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<int>("Client_Id")
@@ -41,14 +40,12 @@ namespace Database.Migrations
                         .HasColumnName("Client_Id");
 
                     b.Property<string>("Existing_Customer_Flag")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<string>("Final_Decision")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Insurance_Required")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<int>("Number_of_Dependants")
@@ -104,7 +101,7 @@ namespace Database.Migrations
                     b.Property<int>("Application_Score")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Current_Delinquency_status")
+                    b.Property<byte?>("Current_Delinquency_status")
                         .HasColumnType("tinyint unsigned");
 
                     b.Property<string>("GB_Flag")
@@ -114,7 +111,6 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Home_Telephone_Number")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<string>("Marital_Status")
@@ -157,11 +153,11 @@ namespace Database.Migrations
                     b.Property<int>("Loan_Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Loan_Payment_Frequency")
-                        .HasColumnType("int");
+                    b.Property<string>("Loan_Payment_Frequency")
+                        .HasColumnType("varchar(1)");
 
-                    b.Property<int>("Loan_Payment_Method")
-                        .HasColumnType("int");
+                    b.Property<string>("Loan_Payment_Method")
+                        .HasColumnType("varchar(1)");
 
                     b.Property<int>("Loan_To_Income")
                         .HasColumnType("int");
