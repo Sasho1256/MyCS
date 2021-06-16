@@ -15,9 +15,9 @@ namespace Database
         public string Account_Number { get; set; }
         public string Account_Type { get; set; }
         public string Final_Decision { get; set; }
-        public char Cheque_Card_Flag { get; set; }
-        public char Existing_Customer_Flag { get; set; }
-        public char Insurance_Required { get; set; }
+        public char? Cheque_Card_Flag { get; set; }
+        public char? Existing_Customer_Flag { get; set; }
+        public char? Insurance_Required { get; set; }
         public int Number_of_Dependants { get; set; }
         public int Number_of_Payments { get; set; }
         public string Promotion_Type { get; set; }

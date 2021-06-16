@@ -6,9 +6,9 @@
 
         public int Loan_Amount { get; set; }
 
-        public int Loan_Payment_Frequency { get; set; }
+        public char? Loan_Payment_Frequency { get; set; }
 
-        public int Loan_Payment_Method { get; set; }
+        public char? Loan_Payment_Method { get; set; }
 
         public int Loan_To_Income { get; set; }
 
