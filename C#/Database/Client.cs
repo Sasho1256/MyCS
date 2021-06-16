@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CsvHelper.Configuration.Attributes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database
 {
     public partial class Client
     {
+        [Ignore]
         public int Id { get; set; }
         public byte Current_Delinquency_status { get; set; }
         public int Application_Date { get; set; }
@@ -22,7 +24,10 @@ namespace Database
         
         [ForeignKey("Account")]
         [Column("Account_Id")]
+        [Ignore]
         public int Account_Id { get; set; }
+
+        [Ignore]
         public virtual Account Account { get; set; }
     }
 }

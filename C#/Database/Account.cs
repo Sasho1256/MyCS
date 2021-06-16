@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Database
 {
     public partial class Account
     {
+        [Ignore]
         public int Id { get; set; }
         public string Account_Number { get; set; }
         public string Account_Type { get; set; }
@@ -28,9 +30,13 @@ namespace Database
 
         [ForeignKey("Client")]
         [Column("Client_Id")]
+        [Ignore]
         public int Client_Id { get; set; }
+
+        [Ignore]
         public virtual Client Client { get; set; }
 
+        [Ignore]
         public virtual ICollection<Loan> Loans { get; set; }
     }
 }
