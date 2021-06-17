@@ -3,14 +3,16 @@ using System;
 using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database.Migrations
 {
     [DbContext(typeof(MyCsDbContext))]
-    partial class MyCsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210617062634_ChangeTypeOfApplicationDate")]
+    partial class ChangeTypeOfApplicationDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +92,10 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("Account_Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Account_Id");
+
                     b.Property<int>("Age_of_Applicant")
                         .HasColumnType("int");
 
@@ -136,6 +142,8 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Account_Id");
 
                     b.ToTable("Clients");
                 });
@@ -372,6 +380,17 @@ namespace Database.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Loan");
+                });
+
+            modelBuilder.Entity("Database.Client", b =>
+                {
+                    b.HasOne("Database.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("Account_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

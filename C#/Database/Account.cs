@@ -11,6 +11,7 @@ namespace Database
     public partial class Account
     {
         [Ignore]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Account_Number { get; set; }
         public string Account_Type { get; set; }
@@ -37,6 +38,9 @@ namespace Database
         public virtual Client Client { get; set; }
 
         [Ignore]
-        public virtual ICollection<Loan> Loans { get; set; }
+        public int LoanId { get; set; }
+
+        [Ignore]
+        public virtual Loan Loan { get; set; }
     }
 }

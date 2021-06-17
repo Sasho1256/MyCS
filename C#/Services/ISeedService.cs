@@ -1,7 +1,9 @@
-﻿namespace Services
+﻿using System.Threading.Tasks;
+
+namespace Services
 {
     public interface ISeedService
     {
-        public void SeedRecords();
+        public Task SeedRecords();
     }
 }
