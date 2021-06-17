@@ -2,6 +2,8 @@
 using Services;
 using System.IO;
 using System.Threading.Tasks;
+using MyCS.InputModels;
+using Microsoft.AspNetCore.Http;
 
 namespace MyCS.Controllers
 {
@@ -18,9 +20,15 @@ namespace MyCS.Controllers
             return View();
         }
 
-        public async Task<IActionResult> SeedRecords() 
+        [HttpGet]
+        public IActionResult SeedRecords()
         {
-            await seeder.SeedRecords();
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SeedRecords(IFormFile file)
+        {
+            await seeder.SeedRecords(new CsvFile() { File = file });
             return this.Redirect("/");
         }
     }

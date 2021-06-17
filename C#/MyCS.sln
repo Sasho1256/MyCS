@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCS", "MyCS\MyCS.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{AA2EA127-DEE7-4AD6-89D2-448A7062ED33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{85A2FDDB-6845-4759-AEDA-4E728A008C13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{85A2FDDB-6845-4759-AEDA-4E728A008C13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputModels", "InputModels\InputModels.csproj", "{636DCFA4-1C7E-4322-9C85-C3B976FFD23C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{85A2FDDB-6845-4759-AEDA-4E728A008C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85A2FDDB-6845-4759-AEDA-4E728A008C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85A2FDDB-6845-4759-AEDA-4E728A008C13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636DCFA4-1C7E-4322-9C85-C3B976FFD23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636DCFA4-1C7E-4322-9C85-C3B976FFD23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636DCFA4-1C7E-4322-9C85-C3B976FFD23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636DCFA4-1C7E-4322-9C85-C3B976FFD23C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

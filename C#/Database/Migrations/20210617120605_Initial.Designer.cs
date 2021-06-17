@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(MyCsDbContext))]
-    [Migration("20210616085056_Client and Account Table")]
-    partial class ClientandAccountTable
+    [Migration("20210617120605_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,6 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Cheque_Card_Flag")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<int>("Client_Id")
@@ -43,15 +42,16 @@ namespace Database.Migrations
                         .HasColumnName("Client_Id");
 
                     b.Property<string>("Existing_Customer_Flag")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<string>("Final_Decision")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Insurance_Required")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
+
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Number_of_Dependants")
                         .HasColumnType("int");
@@ -81,6 +81,8 @@ namespace Database.Migrations
 
                     b.HasIndex("Client_Id");
 
+                    b.HasIndex("LoanId");
+
                     b.ToTable("Accounts");
                 });
 
@@ -90,15 +92,11 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Account_Id")
-                        .HasColumnType("int")
-                        .HasColumnName("Account_Id");
-
                     b.Property<int>("Age_of_Applicant")
                         .HasColumnType("int");
 
-                    b.Property<int>("Application_Date")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Application_Date")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("Application_Month")
                         .HasColumnType("int");
@@ -106,7 +104,7 @@ namespace Database.Migrations
                     b.Property<int>("Application_Score")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Current_Delinquency_status")
+                    b.Property<byte?>("Current_Delinquency_status")
                         .HasColumnType("tinyint unsigned");
 
                     b.Property<string>("GB_Flag")
@@ -116,7 +114,6 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Home_Telephone_Number")
-                        .IsRequired()
                         .HasColumnType("varchar(1)");
 
                     b.Property<string>("Marital_Status")
@@ -142,9 +139,30 @@ namespace Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Account_Id");
-
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Database.Loan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Loan_Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Loan_Payment_Frequency")
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("Loan_Payment_Method")
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<double>("Loan_To_Income")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Loans");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -347,18 +365,15 @@ namespace Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("Database.Client", b =>
-                {
-                    b.HasOne("Database.Account", "Account")
+                    b.HasOne("Database.Loan", "Loan")
                         .WithMany()
-                        .HasForeignKey("Account_Id")
+                        .HasForeignKey("LoanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.Navigation("Client");
+
+                    b.Navigation("Loan");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
