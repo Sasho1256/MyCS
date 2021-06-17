@@ -1,9 +1,11 @@
 ﻿using CsvHelper;
 using Database;
+using MyCS.InputModels;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Services
 {
@@ -16,14 +18,18 @@ namespace Services
             this.context = context;
         }
 
-        public async Task SeedRecords()
+        public async Task SeedRecords(CsvFile file)
         {
-            using var reader = new StreamReader("..\\Services\\Data\\data.csv");
+            using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.File.FileName}", FileMode.Create);
+
+            file.File.CopyTo(dirStr);
+
+            dirStr.Close();
+
+            using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.File.FileName}");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Context.RegisterClassMap<AccountMap>();
             var records = csv.GetRecords<Account>().ToList();
-            //this.context.Accounts.AddRange(records);
-            //this.context.SaveChanges();
             await this.context.Accounts.AddRangeAsync(records);
             await this.context.SaveChangesAsync();
         }

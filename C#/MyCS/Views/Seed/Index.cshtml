@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MyCS.InputModels
+@model CsvFile
+@{
 	ViewData["Title"] = "Seed data";
 }
 
@@ -16,26 +18,34 @@
 <div id="drop_zone" ondrop="dropHandler(event);" ondragover="allowDrop(event)">
 	<p>Drag one or more files to this Drop Zone ...</p>
 </div>
-<script>
-			function allowDrop(ev){
-				ev.preventDefault();
-			}
-			function dropHandler(ev) {
-				ev.preventDefault();
-				console.log('File(s) dropped');
 
-				if (ev.dataTransfer.items) {
-					for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-						if (ev.dataTransfer.items[i].kind === 'file') {
-							var file = ev.dataTransfer.items[i].getAsFile();
-							console.log('... file[' + i + '].name = ' + file.name);
+<form asp-controller="Seed" asp-action="SeedRecords" method="post" enctype="multipart/form-data">
+	<div class="form-group">
+		<label asp-for="@Model.File"></label>
+		<input asp-for="@Model.File" class="form-control" />
+	</div>
+	<button type ="submit" class="btn btn-primary">Submit</button>
+</form>
+	<!--<script>
+				function allowDrop(ev){
+					ev.preventDefault();
+				}
+				function dropHandler(ev) {
+					ev.preventDefault();
+					console.log('File(s) dropped');
+
+					if (ev.dataTransfer.items) {
+						for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+							if (ev.dataTransfer.items[i].kind === 'file') {
+								var file = ev.dataTransfer.items[i].getAsFile();
+								console.log('... file[' + i + '].name = ' + file.name);
+							}
+						}
+					}
+					else {
+						for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+						console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
 						}
 					}
 				}
-				else {
-					for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-					console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-					}
-				}
-			}
-</script>
+	</script>-->
