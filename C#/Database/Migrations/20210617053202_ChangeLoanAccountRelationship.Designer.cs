@@ -3,14 +3,16 @@ using System;
 using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database.Migrations
 {
     [DbContext(typeof(MyCsDbContext))]
-    partial class MyCsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210617053202_ChangeLoanAccountRelationship")]
+    partial class ChangeLoanAccountRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,11 +92,15 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("Account_Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Account_Id");
+
                     b.Property<int>("Age_of_Applicant")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Application_Date")
-                        .HasColumnType("datetime(6)");
+                    b.Property<int>("Application_Date")
+                        .HasColumnType("int");
 
                     b.Property<int>("Application_Month")
                         .HasColumnType("int");
@@ -137,6 +143,8 @@ namespace Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Account_Id");
+
                     b.ToTable("Clients");
                 });
 
@@ -155,8 +163,8 @@ namespace Database.Migrations
                     b.Property<string>("Loan_Payment_Method")
                         .HasColumnType("varchar(1)");
 
-                    b.Property<double>("Loan_To_Income")
-                        .HasColumnType("double");
+                    b.Property<int>("Loan_To_Income")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -372,6 +380,17 @@ namespace Database.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Loan");
+                });
+
+            modelBuilder.Entity("Database.Client", b =>
+                {
+                    b.HasOne("Database.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("Account_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

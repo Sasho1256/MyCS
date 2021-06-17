@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MyCS.Controllers
 {
@@ -17,10 +18,10 @@ namespace MyCS.Controllers
             return View();
         }
 
-        public IActionResult SeedRecords() 
+        public async Task<IActionResult> SeedRecords() 
         {
-            seeder.SeedRecords();
-            return this.Ok();
+            await seeder.SeedRecords();
+            return this.Redirect("/");
         }
     }
 }
