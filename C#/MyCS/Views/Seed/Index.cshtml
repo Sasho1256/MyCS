@@ -7,13 +7,24 @@
 <!--div class="container">
 	<a asp-area="" asp-controller="Seed" asp-action="SeedRecords">Seed</a>
 </div>-->
-<h1 class="display-4">
-	Seed
-</h1>
-<br />
-<body class="text-center">
+<body>
 	<style>
+		body {
+			background: url("../img/finance2.jpg");
+		}
+
+		#input_form {
+			background: rgba(255,255,255,0.85);
+			backdrop-filter: blur(5px);
+			border-bottom-left-radius: 25px;
+			border-bottom-right-radius: 25px;
+			width: 600px;
+			padding: 30px;
+			margin: auto;
+		}
+
 		#drop_zone {
+			background: white;
 			border-radius: 25px;
 			border: 5px solid #1b6ec2;
 			width: 400px;
@@ -33,50 +44,33 @@
 			cursor: pointer;
 			padding-left: 90px;
 			padding-top: 50px;
-			
 		}
 
-		#submit_btn {
+		.btn, h1, #sub_but_div {
 			border-radius: 25px;
-			text-align: center
+			text-align: center;
 		}
 	</style>
 
-	<form asp-controller="Seed" asp-action="SeedRecords" method="post" enctype="multipart/form-data">
+	<form id="input_form" asp-controller="Seed" asp-action="SeedRecords" method="post" enctype="multipart/form-data">
+		<h1 class="display-4">
+			Bulk Check
+		</h1>
+		<br />
 		<div id="drop_zone" class="form-group">
+
 			<p></p>
 			<p>
-				Drag one or more files into this Drop Zone:
+				Drag one or more files into this drop zone:
 			</p>
 
-			<input id="input_zone" asp-for="@Model.File" class="form-control"/>
+			<input id="input_zone" asp-for="@Model.File" class="form-control" />
 
 		</div>
 		<br />
-		<input id="submit_btn" type="submit" class="btn btn-primary" />
+		<div id="sub_but_div">
+			<input id="submit_btn" type="submit" class="btn btn-primary" />
+		</div>
+
 	</form>
 </body>
-
-<!--<script>
-			function allowDrop(ev){
-				ev.preventDefault();
-			}
-			function dropHandler(ev) {
-				ev.preventDefault();
-				console.log('File(s) dropped');
-
-				if (ev.dataTransfer.items) {
-					for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-						if (ev.dataTransfer.items[i].kind === 'file') {
-							var file = ev.dataTransfer.items[i].getAsFile();
-							console.log('... file[' + i + '].name = ' + file.name);
-						}
-					}
-				}
-				else {
-					for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-					console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-					}
-				}
-			}
-</script>-->
