@@ -13,18 +13,13 @@ namespace MyCS.InputModels
 
         [Required]
         [Display(Name = "Account Type")]
-        //dropdown FL - Fixed Loan/VL - Variable Loan 
         public string Account_Type { get; set; }
 
-        [Required]
         [Display(Name = "Do you have a cheque card?")]
-        //checkbox - has cheque card
-        public bool Cheque_Card_Flag { get; set; }
+        public char Cheque_Card_Flag { get; set; }
 
-        [Required]
         [Display(Name = "Do you have the required insurance?")]
-        //checkbox - if insurance is required
-        public bool Insurance_Required { get; set; }
+        public char Insurance_Required { get; set; }
 
         [Required]
         [Display(Name = "Number of Dependants")]
@@ -38,11 +33,8 @@ namespace MyCS.InputModels
 
         [Required]
         [Display(Name = "Promotion Type")]
-        //dropdown FL - Fixed Loan/VL - Variable Loan 
-        //AD, DM, OT, RR
         public string Promotion_Type { get; set; }
 
-        //Bureau score variables
         [Required]
         [Display(Name = "Bureau Score")]
         [Range(0, int.MaxValue, ErrorMessage = "Enter a positive number.")]
