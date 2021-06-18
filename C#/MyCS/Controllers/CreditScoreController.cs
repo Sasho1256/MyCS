@@ -1,5 +1,5 @@
-﻿using InputModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyCS.InputModels;
 
 namespace MyCS.Controllers
 {

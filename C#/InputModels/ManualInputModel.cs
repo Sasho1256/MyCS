@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace InputModels
+namespace MyCS.InputModels
 {
-    public class ManualInputModel
+    public class ManualInputModel 
     {
         #region financial info
         [Required]
@@ -71,6 +71,7 @@ namespace InputModels
 
         [Required]
         [Display(Name = "Current Delinquency status")]
+        [Range(0, 1, ErrorMessage = "Enter a number between 0 and 1.")]
         public byte? Current_Delinquency_status { get; set; }
 
         [Required]
