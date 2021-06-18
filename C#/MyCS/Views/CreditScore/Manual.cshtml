@@ -4,7 +4,11 @@
 }
 <style>
     body {
-        background: url("../img/finance1.jpg");
+        background: url("../img/finance1.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
     div {
         height: 87.25%;
@@ -14,17 +18,21 @@
         backdrop-filter: blur(5px);
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 25px;
-		width: 600px;
-        padding: 30px;
+        padding: 50px;
 		margin: auto;
     }
 	.btn, h1, #sub_but_div {
 		border-radius: 25px;
 		text-align: center;
 	}
+    .container {
+        display: flex;
+        flex-direction: row-reverse;
+		justify-content: space-evenly;
+    }
 </style>
 <body>
-    <div>
+    <div class="container">
 		<form asp-controller="CreditScore" asp-action="Manual" method="post" enctype="multipart/form-data">
 			<h1 class="display-4">
 				Manual Check
