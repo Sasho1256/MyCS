@@ -75,7 +75,7 @@ namespace MyCS.InputModels
         public byte? Current_Delinquency_status { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime, ErrorMessage = "Enter a valid date.")]
+        [DataType(DataType.Date, ErrorMessage = "Enter a valid date.")]
         [Display(Name = "Application Date")]
         public DateTime Application_Date { get; set; }
 
@@ -84,24 +84,22 @@ namespace MyCS.InputModels
         [Range(0, int.MaxValue, ErrorMessage = "Enter a positive number.")]
         public int Gross_Annual_Income { get; set; }
 
-        [Required]
-        [Display(Name = "Do you have a home phone?")]
-        //checkbox - has home phone
+        [Display(Name = "Phone number")]
         public char? Home_Telephone_Number { get; set; }
 
         [Required]
         [Display(Name = "Marital Status")]
-        //dropdown - D/M/S/W/Z
+        [RegularExpression("D|M|S|W|Z", ErrorMessage = "Choose an option.")]
         public char Marital_Status { get; set; }
 
         [Required]
         [Display(Name = "Occupation Code")]
-        //dropdown - O/P/B/M
+        [RegularExpression("O|P|B|M", ErrorMessage = "Choose an option.")]
         public char Occupation_Code { get; set; }
 
         [Required]
         [Display(Name = "Residential Status")]
-        //dropdown - H/L/O/T
+        [RegularExpression("H|L|O|T", ErrorMessage = "Choose an option.")]
         public char Residential_Status { get; set; }
 
         [Required]
