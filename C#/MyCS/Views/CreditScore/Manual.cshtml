@@ -14,40 +14,53 @@
         backdrop-filter: blur(5px);
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 25px;
+		width: 600px;
         padding: 30px;
+		margin: auto;
     }
+	.btn, h1, #sub_but_div {
+		border-radius: 25px;
+		text-align: center;
+	}
 </style>
 <body>
     <div>
-        <form asp-controller="CreditScore" asp-action="Manual" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-auto">Personal information</div>
-                <div class="col"><hr></div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Age_of_Applicant"></label>
-                <input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" />
-                <span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Current_Delinquency_status"></label>
-                <input asp-for="Current_Delinquency_status" class="form-control" placeholder="Enter current delinquency status" />
-                <span asp-validation-for="Current_Delinquency_status" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-auto">Financial information</div>
-                <div class="col"><hr></div>
-            </div>
+		<form asp-controller="CreditScore" asp-action="Manual" method="post" enctype="multipart/form-data">
+			<h1 class="display-4">
+				Manual Check
+			</h1>
+			<br />
+			<div class="row">
+				<div class="col"><hr></div>
+				<div class="col-auto">Personal information</div>
+				<div class="col"><hr></div>
+			</div>
+			<div class="form-group">
+				<label asp-for="Age_of_Applicant"></label>
+				<input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" />
+				<span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Current_Delinquency_status"></label>
+				<input asp-for="Current_Delinquency_status" class="form-control" placeholder="Enter current delinquency status" />
+				<span asp-validation-for="Current_Delinquency_status" class="text-danger"></span>
+			</div>
+			<div class="row">
+				<div class="col"><hr></div>
+				<div class="col-auto">Financial information</div>
+				<div class="col"><hr></div>
+			</div>
 
-            <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-auto">Loan information</div>
-                <div class="col"><hr></div>
-            </div>
-            <input class="btn btn-primary separated" type="submit" value="Submit">
-        </form>
+			<div class="row">
+				<div class="col"><hr></div>
+				<div class="col-auto">Loan information</div>
+				<div class="col"><hr></div>
+			</div>
+			<br />
+			<div id="sub_but_div">
+				<input class="btn btn-primary separated" type="submit" value="Submit">
+			</divid="sub_but_div">
+		</form>
     </div>
     
 </body>
