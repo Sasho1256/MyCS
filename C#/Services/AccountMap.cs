@@ -37,6 +37,7 @@ namespace Services
             int year = int.Parse(input.Substring(0, 4));
             int month = int.Parse(input.Substring(4, 2));
             int day = int.Parse(input.Substring(6, 2));
+            // todo: try-catch and return exception if invalid data
             return new DateTime(year, month, day);
         }
     }
