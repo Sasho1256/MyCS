@@ -6,9 +6,23 @@ body {
     margin-bottom: 60px;
 }
 
+a {
+    color: white;
+}
+
+    a:hover {
+        color: #00A0C6;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
 section {
     color: #fff;
     text-align: center;
+}
+
+#background{
+
 }
 
 div {
