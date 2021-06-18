@@ -1,0 +1,26 @@
+﻿@{
+    this.ViewData["Title"] = "Credit Score Calculator";
+}
+<head>
+    <link rel="stylesheet" href="~/css/custom.css" />
+</head>
+
+<section class="container">
+    <a asp-controller="CreditScore" asp-action="Manual">
+        <div class="left-half">
+            <article>
+                <h1>Manual Credit Score Check</h1>
+                <p>Fill out the form and find out your credit score.</p>
+            </article>
+        </div>
+    </a>
+    <a asp-controller="CreditScore" asp-action="Bulk">
+        <div class="right-half">
+            <article>
+                <h1>Bulk data Credit Score Check</h1>
+                <p>Upload the csv file and get the results for all entries.</p>
+            </article>
+        </div>
+    </a>
+</section>
+
