@@ -20,16 +20,16 @@ namespace MyCS.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult SeedRecords()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> SeedRecords(IFormFile file)
-        {
-            await seeder.SeedRecords(new CsvFile() { File = file });
-            return this.Redirect("/");
-        }
+        //[HttpGet]
+        //public IActionResult SeedRecords()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> SeedRecords(IFormFile file)
+        //{
+        //    await seeder.SeedRecords(new CsvFile() { File = file });
+        //    return this.Redirect("/");
+        //}
     }
 }
