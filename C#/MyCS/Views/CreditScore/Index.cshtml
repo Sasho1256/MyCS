@@ -2,8 +2,17 @@
 	this.ViewData["Title"] = "Credit Score Calculator";
 }
 <head>
-	<link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
 </head>
+
+<style>
+    .left-half, .right-half {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
 
 <section class="container">
     <a asp-controller="CreditScore" asp-action="Manual">
@@ -14,7 +23,7 @@
             </article>
         </div>
     </a>
-    <a asp-controller="Seed" asp-action="Index">
+    <a asp-controller="CreditScore" asp-action="Bulk">
         <div class="right-half">
             <article>
                 <h1>Bulk data Credit Score Check</h1>
