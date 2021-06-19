@@ -116,17 +116,12 @@ namespace MyCS.InputModels
         public int Loan_Amount { get; set; }
 
         // todo: check default values
-        [Required]
         [Display(Name = "How often do you pay your loan?")]
-        // dropdown - na/f/m/w/x
         public char? Loan_Payment_Frequency { get; set; }
 
-        [Required]
         [Display(Name = "How do you pay your loan?")]
-        // dropdown - na/b/q/s/x
         public char? Loan_Payment_Method { get; set; }
 
-        // ??
         public double Loan_To_Income { get; set; }
         #endregion
     }
