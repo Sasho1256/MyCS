@@ -22,8 +22,8 @@
             var result = mapper.Map<Account>(input);
             result.Client = mapper.Map<Client>(input);
             result.Loan = mapper.Map<Loan>(input);
-            //calculate credit score and decide eligibility
-            //save to database
+            // todo: calculate credit score and decide eligibility
+            // todo: save to database
         }
     }
 }
