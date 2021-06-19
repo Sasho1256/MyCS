@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services;
 using System;
+using Services.Mappings;
 
 namespace MyCS
 {
@@ -42,6 +43,9 @@ namespace MyCS
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddTransient<ISeedService, SeedService>();
+            services.AddTransient<ICreditScoreService, CreditScoreService>();
+            services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>(),
+                AppDomain.CurrentDomain.GetAssemblies());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

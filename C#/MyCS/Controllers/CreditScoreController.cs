@@ -10,9 +10,12 @@ namespace MyCS.Controllers
     public class CreditScoreController : Controller
     {
         private ISeedService seeder;
-        public CreditScoreController(ISeedService seeder)
+        private readonly ICreditScoreService scoreService;
+
+        public CreditScoreController(ISeedService seeder, ICreditScoreService scoreService)
         {
             this.seeder = seeder;
+            this.scoreService = scoreService;
         }
 
         public IActionResult Index()
@@ -29,6 +32,7 @@ namespace MyCS.Controllers
         [HttpPost]
         public IActionResult Manual(ManualInputModel input)
         {
+            this.scoreService.CreateRecordFromManualInput(input);
             return View();
         }
 
