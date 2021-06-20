@@ -94,19 +94,6 @@
 			<input asp-for="Home_Telephone_Number" type="radio" value="N">
 			<label asp-for="Home_Telephone_Number">No</label><br><br>
 
-			@*<label>Marital Status</label><br />
-				<input asp-for="Marital_Status" type="radio" value="M">
-				<label asp-for="Marital_Status">Married</label>
-				<input asp-for="Marital_Status" type="radio" value="D">
-				<label asp-for="Marital_Status">Divorced</label>
-				<input asp-for="Marital_Status" type="radio" value="S">
-				<label asp-for="Marital_Status">Single</label>
-				<input asp-for="Marital_Status" type="radio" value="W">
-				<label asp-for="Marital_Status">Widow</label>
-				<input asp-for="Marital_Status" type="radio" value="Z">
-				<label asp-for="Marital_Status">Other</label><br />
-				<span asp-validation-for="Marital_Status" class="text-danger"></span><br>*@
-
 			<label>Marital Status</label><br />
 			<select asp-for="Marital_Status">
 				<option value="M">Married</option>
@@ -117,17 +104,6 @@
 			</select><br>
 			<span asp-validation-for="Marital_Status" class="text-danger"></span><br>
 
-			@*<label>Occupation Code</label><br />
-				<input asp-for="Occupation_Code" type="radio" value="M">
-				<label asp-for="Occupation_Code">Employee</label>
-				<input asp-for="Occupation_Code" type="radio" value="B">
-				<label asp-for="Occupation_Code">Self-employed</label>
-				<input asp-for="Occupation_Code" type="radio" value="P">
-				<label asp-for="Occupation_Code">Pensioner</label>
-				<input asp-for="Occupation_Code" type="radio" value="O">
-				<label asp-for="Occupation_Code">Other</label><br />
-				<span asp-validation-for="Occupation_Code" class="text-danger"></span><br>*@
-
 			<label>Occupation Code</label><br />
 			<select asp-for="Occupation_Code">
 				<option value="M">Employee</option>
@@ -136,17 +112,6 @@
 				<option value="O" selected>Other</option>
 			</select><br>
 			<span asp-validation-for="Occupation_Code" class="text-danger"></span><br>
-
-			@*<label>Residential Status</label><br />
-				<input asp-for="Residential_Status" type="radio" value="H">
-				<label asp-for="Residential_Status">Homeowner</label>
-				<input asp-for="Residential_Status" type="radio" value="L">
-				<label asp-for="Residential_Status">Living with parents</label>
-				<input asp-for="Residential_Status" type="radio" value="T">
-				<label asp-for="Residential_Status">Tenant</label>
-				<input asp-for="Residential_Status" type="radio" value="O">
-				<label asp-for="Residential_Status">Other</label><br />
-				<span asp-validation-for="Residential_Status" class="text-danger"></span><br>*@
 
 			<label>Residential Status</label><br />
 			<select asp-for="Residential_Status">
@@ -218,17 +183,6 @@
 				<span asp-validation-for="Number_of_Payments" class="text-danger"></span>
 			</div>
 
-			@*<label>Promotion Type</label><br />
-				<input asp-for="Promotion_Type" type="radio" value="AD">
-				<label asp-for="Promotion_Type">AD</label>
-				<input asp-for="Promotion_Type" type="radio" value="DM">
-				<label asp-for="Promotion_Type">DM</label>
-				<input asp-for="Promotion_Type" type="radio" value="OT">
-				<label asp-for="Promotion_Type">OT</label>
-				<input asp-for="Promotion_Type" type="radio" value="RR">
-				<label asp-for="Promotion_Type">RR</label><br />
-				<span asp-validation-for="Promotion_Type" class="text-danger"></span><br>*@
-
 			<label>Promotion Type</label><br />
 			<select asp-for="Promotion_Type">
 				<option value="AD">AD</option>
@@ -274,16 +228,6 @@
 				<span asp-validation-for="Loan_Amount" class="text-danger"></span>
 			</div>
 
-			@*<label>Loan Payment Frequency</label><br />
-				<input asp-for="Loan_Payment_Frequency" type="radio" value="M">
-				<label asp-for="Loan_Payment_Frequency">Monthly</label>
-				<input asp-for="Loan_Payment_Frequency" type="radio" value="W">
-				<label asp-for="Loan_Payment_Frequency">Weekly</label>
-				<input asp-for="Loan_Payment_Frequency" type="radio" value="F">
-				<label asp-for="Loan_Payment_Frequency">Two times per month</label>
-				<input asp-for="Loan_Payment_Frequency" type="radio" value="X">
-				<label asp-for="Loan_Payment_Frequency">Not given</label><br />*@
-
 			<label>Loan Payment Frequency</label><br />
 			<select asp-for="Loan_Payment_Frequency">
 				<option value="M">Monthly</option>
@@ -291,16 +235,6 @@
 				<option value="F">Two times per month</option>
 				<option value="X" selected>Not given</option>
 			</select><br><br>
-
-			@*<label>Loan Payment Method</label><br />
-				<input asp-for="Loan_Payment_Method" type="radio" value="B">
-				<label asp-for="Loan_Payment_Method">Bank Payment</label>
-				<input asp-for="Loan_Payment_Method" type="radio" value="Q">
-				<label asp-for="Loan_Payment_Method">Cheque</label>
-				<input asp-for="Loan_Payment_Method" type="radio" value="S">
-				<label asp-for="Loan_Payment_Method">Standing  Order</label>
-				<input asp-for="Loan_Payment_Method" type="radio" value="X">
-				<label asp-for="Loan_Payment_Method">Not given</label><br />*@
 
 			<label>Loan Payment Method</label><br />
 			<select asp-for="Loan_Payment_Method">
