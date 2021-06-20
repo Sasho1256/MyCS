@@ -1,0 +1,19 @@
+﻿.img {
+	background-image: url(~/img/flame-payment-processed-2.png);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.img {
+		background-image: url(~/img/flame-payment-processed-2.png);
+	}
+}
+
+h3 {
+	margin-top: 150px
+}
+
+.custom_main_div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
