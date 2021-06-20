@@ -1,271 +1,331 @@
 ﻿@model MyCS.InputModels.ManualInputModel
 @{
-    this.ViewData["Title"] = "Manual form";
+	this.ViewData["Title"] = "Manual form";
 }
 <style>
-    body {
-        background: url("../img/finance1.jpg") no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
+	body {
+		background: url("../img/finance1.jpg") no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
 
-    div {
-        height: 87.25%;
-    }
+	div {
+		height: 87.25%;
+	}
 
-    form {
-        background: rgba(255,255,255,0.85);
-        backdrop-filter: blur(5px);
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 25px;
-        padding: 50px;
-        margin: auto;
-    }
+	form {
+		background: rgba(255,255,255,0.85);
+		backdrop-filter: blur(5px);
+		border-bottom-left-radius: 25px;
+		border-bottom-right-radius: 25px;
+		padding: 50px;
+		margin: auto;
+	}
 
-    .btn, h1, #sub_but_div {
-        border-radius: 25px;
-        text-align: center;
-    }
+	.btn, h1, #sub_but_div {
+		border-radius: 25px;
+		text-align: center;
+	}
 
-    .container {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-evenly;
-    }
+	.container {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-evenly;
+	}
 
-    .datepicker {
-        height: 250px;
-    }
+	.datepicker {
+		height: 250px;
+	}
 
-    p {
-        display: block;
-    }
+	p {
+		display: block;
+	}
+
+	select {
+		border: none;
+		border-radius: 5px;
+		height: 35px
+		
+	}
 </style>
 <body>
-    <div class="container">
-        <form asp-controller="CreditScore" asp-action="Manual" method="post" enctype="multipart/form-data">
-            <h1 class="display-4">
-                Manual Check
-            </h1>
-            <br />
-            <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-auto">Personal information</div>
-                <div class="col"><hr></div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Age_of_Applicant"></label>
-                <input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" />
-                <span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Current_Delinquency_status"></label>
-                <input asp-for="Current_Delinquency_status" class="form-control" placeholder="Enter current delinquency status" />
-                <span asp-validation-for="Current_Delinquency_status" class="text-danger"></span>
-            </div>
+	<div class="container">
+		<form asp-controller="CreditScore" asp-action="Manual" method="post" enctype="multipart/form-data">
+			<h1 class="display-4">
+				Manual Check
+			</h1>
+			<br />
+			<div class="row">
+				<div class="col"><hr></div>
+				<div class="col-auto">Personal information</div>
+				<div class="col"><hr></div>
+			</div>
+			<div class="form-group">
+				<label asp-for="Age_of_Applicant"></label>
+				<input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" />
+				<span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Current_Delinquency_status"></label>
+				<input asp-for="Current_Delinquency_status" class="form-control" placeholder="Enter current delinquency status" />
+				<span asp-validation-for="Current_Delinquency_status" class="text-danger"></span>
+			</div>
 
-            <label asp-for="Application_Date"></label>
-            <div id="datepicker" class="input-group date separated" data-date-format="mm-dd-yyyy">
-                <input class="form-control" type="text" asp-for="Application_Date" readonly />
-                <div class="input-group-text">
-                    <span class="input-group-addon"><ion-icon name="calendar-outline"></ion-icon> Date</span>
-                </div>
-            </div>
-            <span asp-validation-for="Application_Date" class="text-danger"></span>
+			<label asp-for="Application_Date"></label>
+			<div id="datepicker" class="input-group date separated" data-date-format="mm-dd-yyyy">
+				<input class="form-control" type="text" asp-for="Application_Date" readonly />
+				<div class="input-group-text">
+					<span class="input-group-addon"><ion-icon name="calendar-outline"></ion-icon> Date</span>
+				</div>
+			</div>
+			<span asp-validation-for="Application_Date" class="text-danger"></span>
 
-            <div class="form-group">
-                <label asp-for="Gross_Annual_Income"></label>
-                <input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" />
-                <span asp-validation-for="Gross_Annual_Income" class="text-danger"></span>
-            </div>
+			<div class="form-group">
+				<label asp-for="Gross_Annual_Income"></label>
+				<input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" />
+				<span asp-validation-for="Gross_Annual_Income" class="text-danger"></span>
+			</div>
 
-            <label>Do you have a home telephone number?</label><br />
-            <input asp-for="Home_Telephone_Number" type="radio" value="Y">
-            <label asp-for="Home_Telephone_Number">Yes</label>
-            <input asp-for="Home_Telephone_Number" type="radio" value="N">
-            <label asp-for="Home_Telephone_Number">No</label><br><br>
+			<label>Do you have a home telephone number?</label><br />
+			<input asp-for="Home_Telephone_Number" type="radio" value="Y">
+			<label asp-for="Home_Telephone_Number">Yes</label>
+			<input asp-for="Home_Telephone_Number" type="radio" value="N">
+			<label asp-for="Home_Telephone_Number">No</label><br><br>
 
-            <label>Marital Status</label><br />
-            <input asp-for="Marital_Status" type="radio" value="M">
-            <label asp-for="Marital_Status">Married</label>
-            <input asp-for="Marital_Status" type="radio" value="D">
-            <label asp-for="Marital_Status">Divorced</label>
-            <input asp-for="Marital_Status" type="radio" value="S">
-            <label asp-for="Marital_Status">Single</label>
-            <input asp-for="Marital_Status" type="radio" value="W">
-            <label asp-for="Marital_Status">Widow</label>
-            <input asp-for="Marital_Status" type="radio" value="Z">
-            <label asp-for="Marital_Status">Other</label><br />
-            <span asp-validation-for="Marital_Status" class="text-danger"></span><br>
+			@*<label>Marital Status</label><br />
+				<input asp-for="Marital_Status" type="radio" value="M">
+				<label asp-for="Marital_Status">Married</label>
+				<input asp-for="Marital_Status" type="radio" value="D">
+				<label asp-for="Marital_Status">Divorced</label>
+				<input asp-for="Marital_Status" type="radio" value="S">
+				<label asp-for="Marital_Status">Single</label>
+				<input asp-for="Marital_Status" type="radio" value="W">
+				<label asp-for="Marital_Status">Widow</label>
+				<input asp-for="Marital_Status" type="radio" value="Z">
+				<label asp-for="Marital_Status">Other</label><br />
+				<span asp-validation-for="Marital_Status" class="text-danger"></span><br>*@
 
-            <label>Occupation Code</label><br />
-            <input asp-for="Occupation_Code" type="radio" value="M">
-            <label asp-for="Occupation_Code">Employee</label>
-            <input asp-for="Occupation_Code" type="radio" value="B">
-            <label asp-for="Occupation_Code">Self-employed</label>
-            <input asp-for="Occupation_Code" type="radio" value="P">
-            <label asp-for="Occupation_Code">Pensioner</label>
-            <input asp-for="Occupation_Code" type="radio" value="O">
-            <label asp-for="Occupation_Code">Other</label><br />
-            <span asp-validation-for="Occupation_Code" class="text-danger"></span><br>
+			<label>Marital Status</label><br />
+			<select asp-for="Marital_Status">
+				<option value="M">Married</option>
+				<option value="D">Divorced</option>
+				<option value="S">Single</option>
+				<option value="W">Widow</option>
+				<option value="Z" selected>Other</option>
+			</select><br>
+			<span asp-validation-for="Marital_Status" class="text-danger"></span><br>
 
-            <label>Residential Status</label><br />
-            <input asp-for="Residential_Status" type="radio" value="H">
-            <label asp-for="Residential_Status">Homeowner</label>
-            <input asp-for="Residential_Status" type="radio" value="L">
-            <label asp-for="Residential_Status">Living with parents</label>
-            <input asp-for="Residential_Status" type="radio" value="T">
-            <label asp-for="Residential_Status">Tenant</label>
-            <input asp-for="Residential_Status" type="radio" value="O">
-            <label asp-for="Residential_Status">Other</label><br />
-            <span asp-validation-for="Residential_Status" class="text-danger"></span><br>
+			@*<label>Occupation Code</label><br />
+				<input asp-for="Occupation_Code" type="radio" value="M">
+				<label asp-for="Occupation_Code">Employee</label>
+				<input asp-for="Occupation_Code" type="radio" value="B">
+				<label asp-for="Occupation_Code">Self-employed</label>
+				<input asp-for="Occupation_Code" type="radio" value="P">
+				<label asp-for="Occupation_Code">Pensioner</label>
+				<input asp-for="Occupation_Code" type="radio" value="O">
+				<label asp-for="Occupation_Code">Other</label><br />
+				<span asp-validation-for="Occupation_Code" class="text-danger"></span><br>*@
 
-            <div class="form-group">
-                <label asp-for="Time_at_Address"></label>
-                <input asp-for="Time_at_Address" class="form-control" placeholder="Enter time at address" />
-                <span asp-validation-for="Time_at_Address" class="text-danger"></span>
-            </div>
+			<label>Occupation Code</label><br />
+			<select asp-for="Occupation_Code">
+				<option value="M">Employee</option>
+				<option value="B">Self-employed</option>
+				<option value="P">Pensioner</option>
+				<option value="O" selected>Other</option>
+			</select><br>
+			<span asp-validation-for="Occupation_Code" class="text-danger"></span><br>
 
-            <div class="form-group">
-                <label asp-for="Time_in_Employment"></label>
-                <input asp-for="Time_in_Employment" class="form-control" placeholder="Enter time in employment" />
-                <span asp-validation-for="Time_in_Employment" class="text-danger"></span>
-            </div>
+			@*<label>Residential Status</label><br />
+				<input asp-for="Residential_Status" type="radio" value="H">
+				<label asp-for="Residential_Status">Homeowner</label>
+				<input asp-for="Residential_Status" type="radio" value="L">
+				<label asp-for="Residential_Status">Living with parents</label>
+				<input asp-for="Residential_Status" type="radio" value="T">
+				<label asp-for="Residential_Status">Tenant</label>
+				<input asp-for="Residential_Status" type="radio" value="O">
+				<label asp-for="Residential_Status">Other</label><br />
+				<span asp-validation-for="Residential_Status" class="text-danger"></span><br>*@
 
-            <div class="form-group">
-                <label asp-for="Time_with_Bank"></label>
-                <input asp-for="Time_with_Bank" class="form-control" placeholder="Enter time with bank" />
-                <span asp-validation-for="Time_with_Bank" class="text-danger"></span>
-            </div>
+			<label>Residential Status</label><br />
+			<select asp-for="Residential_Status">
+				<option value="H">Homeowner</option>
+				<option value="L">Living with parents</option>
+				<option value="T">Tenant</option>
+				<option value="O" selected>Other</option>
+			</select><br>
+			<span asp-validation-for="Residential_Status" class="text-danger"></span><br>
 
-            <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-auto">Financial information</div>
-                <div class="col"><hr></div>
-            </div>
+			<div class="form-group">
+				<label asp-for="Time_at_Address"></label>
+				<input asp-for="Time_at_Address" class="form-control" placeholder="Enter time at address" />
+				<span asp-validation-for="Time_at_Address" class="text-danger"></span>
+			</div>
 
-            <div class="form-group">
-                <label asp-for="Account_Number"></label>
-                <input asp-for="Account_Number" class="form-control" placeholder="Enter your account number" />
-                <span asp-validation-for="Account_Number" class="text-danger"></span>
-            </div>
+			<div class="form-group">
+				<label asp-for="Time_in_Employment"></label>
+				<input asp-for="Time_in_Employment" class="form-control" placeholder="Enter time in employment" />
+				<span asp-validation-for="Time_in_Employment" class="text-danger"></span>
+			</div>
 
-            <label>Account Type</label><br />
-            <input asp-for="Account_Type" type="radio" value="FL">
-            <label asp-for="Account_Type">Fixed Loan</label>
-            <input asp-for="Account_Type" type="radio" value="VL">
-            <label asp-for="Account_Type">Variable Loan</label><br />
-            <span asp-validation-for="Account_Type" class="text-danger"></span><br>
+			<div class="form-group">
+				<label asp-for="Time_with_Bank"></label>
+				<input asp-for="Time_with_Bank" class="form-control" placeholder="Enter time with bank" />
+				<span asp-validation-for="Time_with_Bank" class="text-danger"></span>
+			</div>
 
-            <label>Do you have a cheque card?</label><br />
-            <input asp-for="Cheque_Card_Flag" type="radio" value="Y">
-            <label asp-for="Cheque_Card_Flag">Yes</label>
-            <input asp-for="Cheque_Card_Flag" type="radio" value="N">
-            <label asp-for="Cheque_Card_Flag">No</label><br><br>
+			<div class="row">
+				<div class="col"><hr></div>
+				<div class="col-auto">Financial information</div>
+				<div class="col"><hr></div>
+			</div>
 
-            <label>Do you have the required insurance?</label><br />
-            <input asp-for="Insurance_Required" type="radio" value="Y">
-            <label asp-for="Insurance_Required">Yes</label>
-            <input asp-for="Insurance_Required" type="radio" value="N">
-            <label asp-for="Insurance_Required">No</label><br><br>
+			<div class="form-group">
+				<label asp-for="Account_Number"></label>
+				<input asp-for="Account_Number" class="form-control" placeholder="Enter your account number" />
+				<span asp-validation-for="Account_Number" class="text-danger"></span>
+			</div>
 
-            <div class="form-group">
-                <label asp-for="Number_of_Dependants"></label>
-                <input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" />
-                <span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
-            </div>
+			<label>Account Type</label><br />
+			<input asp-for="Account_Type" type="radio" value="FL">
+			<label asp-for="Account_Type">Fixed Loan</label>
+			<input asp-for="Account_Type" type="radio" value="VL">
+			<label asp-for="Account_Type">Variable Loan</label><br />
+			<span asp-validation-for="Account_Type" class="text-danger"></span><br>
 
-            <div class="form-group">
-                <label asp-for="Number_of_Payments"></label>
-                <input asp-for="Number_of_Payments" class="form-control" placeholder="Enter the number of payments" />
-                <span asp-validation-for="Number_of_Payments" class="text-danger"></span>
-            </div>
+			<label>Do you have a cheque card?</label><br />
+			<input asp-for="Cheque_Card_Flag" type="radio" value="Y">
+			<label asp-for="Cheque_Card_Flag">Yes</label>
+			<input asp-for="Cheque_Card_Flag" type="radio" value="N">
+			<label asp-for="Cheque_Card_Flag">No</label><br><br>
 
-            <label>Promotion Type</label><br />
-            <input asp-for="Promotion_Type" type="radio" value="AD">
-            <label asp-for="Promotion_Type">AD</label>
-            <input asp-for="Promotion_Type" type="radio" value="DM">
-            <label asp-for="Promotion_Type">DM</label>
-            <input asp-for="Promotion_Type" type="radio" value="OT">
-            <label asp-for="Promotion_Type">OT</label>
-            <input asp-for="Promotion_Type" type="radio" value="RR">
-            <label asp-for="Promotion_Type">RR</label><br />
-            <span asp-validation-for="Promotion_Type" class="text-danger"></span><br>
+			<label>Do you have the required insurance?</label><br />
+			<input asp-for="Insurance_Required" type="radio" value="Y">
+			<label asp-for="Insurance_Required">Yes</label>
+			<input asp-for="Insurance_Required" type="radio" value="N">
+			<label asp-for="Insurance_Required">No</label><br><br>
 
-            <div class="form-group">
-                <label asp-for="Bureau_Score"></label>
-                <input asp-for="Bureau_Score" class="form-control" placeholder="Enter bureau score" />
-                <span asp-validation-for="Bureau_Score" class="text-danger"></span>
-            </div>
+			<div class="form-group">
+				<label asp-for="Number_of_Dependants"></label>
+				<input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" />
+				<span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
+			</div>
 
-            <div class="form-group">
-                <label asp-for="SP_ER_Reference"></label>
-                <input asp-for="SP_ER_Reference" class="form-control" placeholder="Enter electoral role reference" />
-                <span asp-validation-for="SP_ER_Reference" class="text-danger"></span>
-            </div>
+			<div class="form-group">
+				<label asp-for="Number_of_Payments"></label>
+				<input asp-for="Number_of_Payments" class="form-control" placeholder="Enter the number of payments" />
+				<span asp-validation-for="Number_of_Payments" class="text-danger"></span>
+			</div>
 
-            <div class="form-group">
-                <label asp-for="SP_Number_Of_Searches_L6M"></label>
-                <input asp-for="SP_Number_Of_Searches_L6M" class="form-control" placeholder="Enter the number of searches" />
-                <span asp-validation-for="SP_Number_Of_Searches_L6M" class="text-danger"></span>
-            </div>
+			@*<label>Promotion Type</label><br />
+				<input asp-for="Promotion_Type" type="radio" value="AD">
+				<label asp-for="Promotion_Type">AD</label>
+				<input asp-for="Promotion_Type" type="radio" value="DM">
+				<label asp-for="Promotion_Type">DM</label>
+				<input asp-for="Promotion_Type" type="radio" value="OT">
+				<label asp-for="Promotion_Type">OT</label>
+				<input asp-for="Promotion_Type" type="radio" value="RR">
+				<label asp-for="Promotion_Type">RR</label><br />
+				<span asp-validation-for="Promotion_Type" class="text-danger"></span><br>*@
 
-            <div class="form-group">
-                <label asp-for="SP_Number_of_CCJs"></label>
-                <input asp-for="SP_Number_of_CCJs" class="form-control" placeholder="Enter the number of CCJs" />
-                <span asp-validation-for="SP_Number_of_CCJs" class="text-danger"></span>
-            </div>
+			<label>Promotion Type</label><br />
+			<select asp-for="Promotion_Type">
+				<option value="AD">AD</option>
+				<option value="DM">DM</option>
+				<option value="OT">OT</option>
+				<option value="RR">RR</option>
+			</select><br>
+			<span asp-validation-for="Promotion_Type" class="text-danger"></span><br>
 
-            <div class="row">
-                <div class="col"><hr></div>
-                <div class="col-auto">Loan information</div>
-                <div class="col"><hr></div>
-            </div>
+			<div class="form-group">
+				<label asp-for="Bureau_Score"></label>
+				<input asp-for="Bureau_Score" class="form-control" placeholder="Enter bureau score" />
+				<span asp-validation-for="Bureau_Score" class="text-danger"></span>
+			</div>
 
-            <div class="form-group">
-                <label asp-for="Loan_Amount"></label>
-                <input asp-for="Loan_Amount" class="form-control" placeholder="Enter loan amount" />
-                <span asp-validation-for="Loan_Amount" class="text-danger"></span>
-            </div>
+			<div class="form-group">
+				<label asp-for="SP_ER_Reference"></label>
+				<input asp-for="SP_ER_Reference" class="form-control" placeholder="Enter electoral role reference" />
+				<span asp-validation-for="SP_ER_Reference" class="text-danger"></span>
+			</div>
 
-            <label>Loan Payment Frequency</label><br />
-            <input asp-for="Loan_Payment_Frequency" type="radio" value="M">
-            <label asp-for="Loan_Payment_Frequency">Monthly</label>
-            <input asp-for="Loan_Payment_Frequency" type="radio" value="W">
-            <label asp-for="Loan_Payment_Frequency">Weekly</label>
-            <input asp-for="Loan_Payment_Frequency" type="radio" value="F">
-            <label asp-for="Loan_Payment_Frequency">Two times per month</label>
-            <input asp-for="Loan_Payment_Frequency" type="radio" value="X">
-            <label asp-for="Loan_Payment_Frequency">Not given</label><br />
+			<div class="form-group">
+				<label asp-for="SP_Number_Of_Searches_L6M"></label>
+				<input asp-for="SP_Number_Of_Searches_L6M" class="form-control" placeholder="Enter the number of searches" />
+				<span asp-validation-for="SP_Number_Of_Searches_L6M" class="text-danger"></span>
+			</div>
 
-            <label>Loan Payment Method</label><br />
-            <input asp-for="Loan_Payment_Method" type="radio" value="B">
-            <label asp-for="Loan_Payment_Method">Bank Payment</label>
-            <input asp-for="Loan_Payment_Method" type="radio" value="Q">
-            <label asp-for="Loan_Payment_Method">Cheque</label>
-            <input asp-for="Loan_Payment_Method" type="radio" value="S">
-            <label asp-for="Loan_Payment_Method">Standing  Order</label>
-            <input asp-for="Loan_Payment_Method" type="radio" value="X">
-            <label asp-for="Loan_Payment_Method">Not given</label><br />
+			<div class="form-group">
+				<label asp-for="SP_Number_of_CCJs"></label>
+				<input asp-for="SP_Number_of_CCJs" class="form-control" placeholder="Enter the number of CCJs" />
+				<span asp-validation-for="SP_Number_of_CCJs" class="text-danger"></span>
+			</div>
 
-            <br />
-            <div id="sub_but_div">
-                <input class="btn btn-primary separated" type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
+			<div class="row">
+				<div class="col"><hr></div>
+				<div class="col-auto">Loan information</div>
+				<div class="col"><hr></div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Loan_Amount"></label>
+				<input asp-for="Loan_Amount" class="form-control" placeholder="Enter loan amount" />
+				<span asp-validation-for="Loan_Amount" class="text-danger"></span>
+			</div>
+
+			@*<label>Loan Payment Frequency</label><br />
+				<input asp-for="Loan_Payment_Frequency" type="radio" value="M">
+				<label asp-for="Loan_Payment_Frequency">Monthly</label>
+				<input asp-for="Loan_Payment_Frequency" type="radio" value="W">
+				<label asp-for="Loan_Payment_Frequency">Weekly</label>
+				<input asp-for="Loan_Payment_Frequency" type="radio" value="F">
+				<label asp-for="Loan_Payment_Frequency">Two times per month</label>
+				<input asp-for="Loan_Payment_Frequency" type="radio" value="X">
+				<label asp-for="Loan_Payment_Frequency">Not given</label><br />*@
+
+			<label>Loan Payment Frequency</label><br />
+			<select asp-for="Loan_Payment_Frequency">
+				<option value="M">Monthly</option>
+				<option value="W">Weekly</option>
+				<option value="F">Two times per month</option>
+				<option value="X" selected>Not given</option>
+			</select><br><br>
+
+			@*<label>Loan Payment Method</label><br />
+				<input asp-for="Loan_Payment_Method" type="radio" value="B">
+				<label asp-for="Loan_Payment_Method">Bank Payment</label>
+				<input asp-for="Loan_Payment_Method" type="radio" value="Q">
+				<label asp-for="Loan_Payment_Method">Cheque</label>
+				<input asp-for="Loan_Payment_Method" type="radio" value="S">
+				<label asp-for="Loan_Payment_Method">Standing  Order</label>
+				<input asp-for="Loan_Payment_Method" type="radio" value="X">
+				<label asp-for="Loan_Payment_Method">Not given</label><br />*@
+
+			<label>Loan Payment Method</label><br />
+			<select asp-for="Loan_Payment_Method">
+				<option value="B">Bank Payment</option>
+				<option value="Q">Cheque</option>
+				<option value="S">Standing  Order</option>
+				<option value="X" selected>Not given</option>
+			</select><br>
+
+			<br />
+			<div id="sub_but_div">
+				<input class="btn btn-primary separated" type="submit" value="Submit">
+			</div>
+		</form>
+	</div>
 
 </body>
 
 @section Scripts{
-    <script>
-        $(function () {
-            $("#datepicker").datepicker({
-                autoclose: true,
-                todayHighlight: true
-            }).datepicker('update', new Date());
-        });
-    </script>
+	<script>
+		$(function () {
+			$("#datepicker").datepicker({
+				autoclose: true,
+				todayHighlight: true
+			}).datepicker('update', new Date());
+		});
+	</script>
 }
