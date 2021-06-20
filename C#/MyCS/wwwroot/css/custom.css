@@ -6,11 +6,11 @@ body {
     margin-bottom: 60px;
 }
 
-a {
+#custom_a {
     color: white;
 }
 
-    a:hover {
+    #custom_a:hover {
         color: #00A0C6;
         text-decoration: none;
         cursor: pointer;
