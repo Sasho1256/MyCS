@@ -1,15 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
 <head>
 	<link rel="stylesheet" href="~/css/LandingPage.css" />
 </head>
-
-<div class="container custom_main_div">
-    <h3>
-		See if you are eligible for a credit?
-	</h3>
-	<img src="~/img/flame-payment-processed-2.png">
-
-</div>
+<body>
+	<div class="container custom_main_div">
+		<div id="sec_div">
+			<h3>
+				See if you are eligible for a credit.
+			</h3>
+			<br />
+			<a href="/CreditScore">
+				<input type="submit" id="sub_but" class="btn btn-primary" value="Check now">
+			</a>
+		</div>
+		<img id="dude" src="~/img/flame-payment-processed-2.png">
+	</div>
+</body>
