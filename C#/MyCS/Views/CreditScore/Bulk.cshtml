@@ -56,10 +56,11 @@
             text-align: center;
         }
 
-        .container {
-            display: flex;
-            justify-content: space-evenly;
-        }
+		.container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		}
     </style>
     <div class="container">
         <form id="input_form" asp-controller="CreditScore" asp-action="Bulk" method="post" enctype="multipart/form-data">
