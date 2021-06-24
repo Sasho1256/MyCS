@@ -3,6 +3,7 @@ using MyCS.InputModels;
 
 namespace MyCS.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using Services;
@@ -44,7 +45,14 @@ namespace MyCS.Controllers
         [HttpPost]
         public async Task<IActionResult> Bulk(IFormFile file)
         {
-            await seeder.SeedRecords(new CsvFile() { File = file });
+            try
+            {
+                await seeder.SeedRecords(new CsvFile() { File = file });
+            }
+            catch (Exception e)
+            {
+                return this.RedirectToAction("Error", "Home", new { exceptionMessage = e.Message});
+            }
             return this.Redirect("/");
         }
     }

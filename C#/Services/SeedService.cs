@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using CsvHelper.Configuration;
+
     public class SeedService : ISeedService
     {
         private readonly MyCsDbContext context;
@@ -20,16 +25,15 @@ namespace Services
 
         public async Task SeedRecords(CsvFile file)
         {
-            using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.File.FileName}", FileMode.Create);
-
-            file.File.CopyTo(dirStr);
-
+            await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.File.FileName}", FileMode.Create);
+            await file.File.CopyToAsync(dirStr);
             dirStr.Close();
 
             using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.File.FileName}");
-            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
             csv.Context.RegisterClassMap<AccountMap>();
-            var records = csv.GetRecords<Account>().ToList();
+            List<Account> records;
+            records = csv.GetRecords<Account>().ToList();
             await this.context.Accounts.AddRangeAsync(records);
             await this.context.SaveChangesAsync();
         }
