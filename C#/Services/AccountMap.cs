@@ -6,11 +6,14 @@ using System.Globalization;
 
 namespace Services
 {
+    using CsvHelper;
+
     public sealed class AccountMap : ClassMap<Account>
     {
         public AccountMap()
         {
             AutoMap(CultureInfo.InvariantCulture);
+            Map(x => x.Account_Number).Validate(x => x.Field.Length == 11);
             //client
             Map(m => m.Client.Application_Date).Name("Application_Date").Convert(x => ConvertStringToDateTime(x.Row[4]));
             Map(c => c.Client.Application_Score).Name("Application_Score");
@@ -34,11 +37,17 @@ namespace Services
 
         private DateTime ConvertStringToDateTime(string input)
         {
-            int year = int.Parse(input.Substring(0, 4));
-            int month = int.Parse(input.Substring(4, 2));
-            int day = int.Parse(input.Substring(6, 2));
-            // todo: try-catch and return exception if invalid data
-            return new DateTime(year, month, day);
+            if (input != null)
+            {
+                string year = input.Substring(0, 4) + "/";
+                string month = input.Substring(4, 2) + "/";
+                string day = input.Substring(6, 2);
+                // todo: try-catch and return exception if invalid data
+                DateTime a;
+                var date = DateTime.TryParse(year + month + day, out a);
+                return date ? a : new DateTime(2000, 1, 1);
+            }
+            return new DateTime(2000, 1, 1);
         }
     }
 }

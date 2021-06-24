@@ -1,0 +1,18 @@
+﻿@model ErrorViewModel
+@{
+    this.ViewData["Title"] = "Error Page";
+}
+
+<div class="container">
+    <h4>@Model.ErrorMessage</h4>
+    <br />
+    <button onclick="goBack()">Go Back</button>
+</div>
+
+@section Scripts{
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+}

@@ -115,7 +115,7 @@ namespace MyCS.InputModels
         [Range(0, int.MaxValue, ErrorMessage = "Enter a positive number.")]
         public int Loan_Amount { get; set; }
 
-        // todo: check default values
+        [RegularExpression(@"F|M|W|X|(\s)")]
         [Display(Name = "How often do you pay your loan?")]
         public char? Loan_Payment_Frequency { get; set; }
 
