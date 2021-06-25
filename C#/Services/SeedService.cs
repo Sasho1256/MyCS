@@ -13,6 +13,7 @@ namespace Services
     using System.Collections.Generic;
     using System.Net.Http;
     using CsvHelper.Configuration;
+    using Microsoft.AspNetCore.Http;
 
     public class SeedService : ISeedService
     {
@@ -23,13 +24,13 @@ namespace Services
             this.context = context;
         }
 
-        public async Task<ICollection<ExceptionModel>> SeedRecords(CsvFile file)
+        public async Task<ICollection<ExceptionModel>> SeedRecords(IFormFile file)
         {
-            await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.File.FileName}", FileMode.Create);
-            await file.File.CopyToAsync(dirStr);
+            await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.FileName}", FileMode.Create);
+            await file.CopyToAsync(dirStr);
             dirStr.Close();
 
-            using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.File.FileName}");
+            using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.FileName}");
             using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
             csv.Context.RegisterClassMap<AccountMap>();
             var records = new List<Account>();
