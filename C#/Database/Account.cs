@@ -17,7 +17,7 @@ namespace Database
         public int Id { get; set; }
 
         [Required]
-        [StringLength(11, MinimumLength = 11)]
+        [StringLength(11, ErrorMessage = "Account number should be 11 symbols long.")]
         public string Account_Number { get; set; }
 
         [RegularExpression("FL|VL")]

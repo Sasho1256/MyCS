@@ -1,11 +1,15 @@
-﻿@model ErrorViewModel
+﻿@using Services
+@model List<string>
 @{
     this.ViewData["Title"] = "Error Page";
 }
 
 <div class="container">
-    <h4>@Model.ErrorMessage</h4>
-    <br />
+    @foreach (var ex in @Model)
+    {
+        <h4>@ex</h4>
+        <br/>
+    }
     <button onclick="goBack()">Go Back</button>
 </div>
 
