@@ -23,7 +23,7 @@ namespace Services
             this.context = context;
         }
 
-        public async Task SeedRecords(CsvFile file)
+        public async Task<ICollection<ExceptionModel>> SeedRecords(CsvFile file)
         {
             await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.File.FileName}", FileMode.Create);
             await file.File.CopyToAsync(dirStr);
@@ -32,10 +32,24 @@ namespace Services
             using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.File.FileName}");
             using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
             csv.Context.RegisterClassMap<AccountMap>();
-            List<Account> records;
-            records = csv.GetRecords<Account>().ToList();
+            var records = new List<Account>();
+            var badRecords = new List<ExceptionModel>();
+            try
+            {
+                records = csv.GetRecords<Account>().ToList();
+            }
+            catch (CsvHelperException e)
+            {
+                badRecords.Add(new ExceptionModel
+                {
+                    Row = csv.Parser.RawRow,
+                    RawRecord = csv.Context.Parser.RawRecord,
+                    ValidationMessage = e.Message
+                });
+            }
             await this.context.Accounts.AddRangeAsync(records);
             await this.context.SaveChangesAsync();
+            return badRecords;
         }
     }
 }

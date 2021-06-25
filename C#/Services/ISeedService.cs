@@ -3,8 +3,10 @@ using System.Threading.Tasks;
 
 namespace Services
 {
+    using System.Collections.Generic;
+
     public interface ISeedService
     {
-        public Task SeedRecords(CsvFile file);
+        public Task<ICollection<ExceptionModel>> SeedRecords(CsvFile file);
     }
 }

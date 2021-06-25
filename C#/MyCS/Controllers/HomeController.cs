@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace MyCS.Controllers
 {
+    using Services;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -29,13 +31,9 @@ namespace MyCS.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(string exceptionMessage)
+        public IActionResult Error(List<string> exceptions)
         {
-            return View(new ErrorViewModel
-            {
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
-                ErrorMessage = exceptionMessage
-            });
+            return View(exceptions);
         }
     }
 }
