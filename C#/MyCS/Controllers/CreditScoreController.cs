@@ -50,8 +50,7 @@ namespace MyCS.Controllers
             var exceptions = await seeder.SeedRecords(file);
             if (exceptions.Count != 0)
             {
-                var ex = exceptions.Select(x => x.RawRecord).ToList();
-                return this.RedirectToAction("Error", "Home", new { exceptions = ex });
+                return this.RedirectToAction("Error", "Home", new { exceptions });
             }
 
             return this.Redirect("/");

@@ -7,6 +7,6 @@ namespace Services
 
     public interface ISeedService
     {
-        public Task<ICollection<ExceptionModel>> SeedRecords(IFormFile file);
+        public Task<ICollection<string>> SeedRecords(IFormFile file);
     }
 }
