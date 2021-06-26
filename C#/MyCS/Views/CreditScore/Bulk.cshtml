@@ -1,5 +1,5 @@
-﻿@using MyCS.InputModels
-@model CsvFile
+@using MyCS.InputModels
+@model Microsoft.AspNetCore.Http.IFormFile
 @{
     ViewData["Title"] = "Seed data";
 }
@@ -63,7 +63,7 @@
 		}
     </style>
     <div class="container">
-        <form id="input_form" asp-controller="CreditScore" asp-action="Bulk" method="post" enctype="multipart/form-data">
+        <form id="input_form" asp-controller="Rest" asp-action="CalculateScoreCsv" method="post" enctype="multipart/form-data">
             <h1 class="display-4">
                 Bulk Check
             </h1>
@@ -74,9 +74,7 @@
                 <p>
                     Drag a .CSV file into this drop zone:
                 </p>
-
-                <input id="input_zone" asp-for="@Model.File" class="form-control" accept=".csv"/>
-
+                <input id="input_zone" type="file" asp-for="@Model" name="file" class="form-control" accept=".csv"/>
             </div>
             <br />
             <div id="sub_but_div">

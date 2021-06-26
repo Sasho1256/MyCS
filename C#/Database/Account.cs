@@ -10,7 +10,7 @@ namespace Database
 {
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Account
+    public class Account
     {
         [Ignore]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,10 +20,12 @@ namespace Database
         [StringLength(11, ErrorMessage = "Account number should be 11 symbols long.")]
         public string Account_Number { get; set; }
 
-        [RegularExpression("FL|VL")]
+        [RegularExpression("FL|VL", ErrorMessage = "Account_Type should be FL (Fixed Loan) or VL(Variable Loan).")]
+        [Default("FL")]
         public string Account_Type { get; set; }
 
-        [RegularExpression("Accept|Decline")]
+        [RegularExpression("Accept|Decline", ErrorMessage = "Final_Decision should be Accept or Decline.")]
+        [Default("Decline")]
         public string Final_Decision { get; set; }
 
         [RegularExpression(@"Y|N|(\s)")]

@@ -6,7 +6,7 @@ namespace Database
 {
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Client
+    public class Client
     {
         [Ignore]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -53,4 +53,5 @@ namespace Database
         [Range(1,12)]
         public int Application_Month { get; set; }
     }
+
 }

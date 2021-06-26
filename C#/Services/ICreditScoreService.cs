@@ -1,10 +1,11 @@
 ﻿namespace Services
 {
     using System.Threading.Tasks;
+    using Database;
     using MyCS.InputModels;
 
     public interface ICreditScoreService
     {
-        public Task CreateRecordFromManualInput(ManualInputModel input);
+        public Task<Account> CreateRecordFromManualInput(ManualInputModel input);
     }
 }
