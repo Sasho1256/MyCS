@@ -79,6 +79,9 @@ namespace Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Account_Number")
+                        .IsUnique();
+
                     b.HasIndex("Client_Id");
 
                     b.HasIndex("LoanId");

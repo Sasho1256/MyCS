@@ -11,9 +11,12 @@ namespace Services
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Net.Http;
+    using System.Threading;
     using CsvHelper.Configuration;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
 
     public class SeedService : ISeedService
     {
@@ -24,7 +27,7 @@ namespace Services
             this.context = context;
         }
 
-        public async Task<ICollection<ExceptionModel>> SeedRecords(IFormFile file)
+        public async Task<ICollection<string>> SeedRecords(IFormFile file)
         {
             await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.FileName}", FileMode.Create);
             await file.CopyToAsync(dirStr);
@@ -34,23 +37,45 @@ namespace Services
             using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
             csv.Context.RegisterClassMap<AccountMap>();
             var records = new List<Account>();
-            var badRecords = new List<ExceptionModel>();
+            var exceptions = new List<string>();
             try
             {
                 records = csv.GetRecords<Account>().ToList();
             }
             catch (CsvHelperException e)
             {
-                badRecords.Add(new ExceptionModel
-                {
-                    Row = csv.Parser.RawRow,
-                    RawRecord = csv.Context.Parser.RawRecord,
-                    ValidationMessage = e.Message
-                });
+                exceptions.Add(e.InnerException != null ? e.InnerException.Message + $"{csv.Parser.Row}" : e.Message);
             }
-            await this.context.Accounts.AddRangeAsync(records);
-            await this.context.SaveChangesAsync();
-            return badRecords;
+
+            var errors = this.ValidateBeforeDatabase(records);
+            exceptions.AddRange(errors.Select(error => error.ErrorMessage));
+
+            if (errors.Count == 0)
+            {
+                try
+                {
+                    await this.context.Accounts.AddRangeAsync(records);
+                    await this.context.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+                    exceptions.Add(e.InnerException != null ? e.InnerException.Message : e.Message);
+                }
+            }
+            return exceptions;
+        }
+
+        private List<ValidationResult> ValidateBeforeDatabase(List<Account> records)
+        {
+            var errors = new List<ValidationResult>();
+            foreach (var e in records)
+            {
+                var vc = new ValidationContext(e, null, null);
+                Validator.TryValidateObject(
+                    e, vc, errors, true);
+            }
+
+            return errors;
         }
     }
 }
