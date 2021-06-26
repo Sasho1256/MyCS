@@ -4,13 +4,29 @@
     this.ViewData["Title"] = "Error Page";
 }
 
-<div class="container">
+<style>
+	/*.container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+        order: 1;
+	}*/
+	.btn {
+		border-radius: 25px;
+	}
+</style>
+
+<div class="container text-center">
+    <br />
+	<h4>There is invalid data in those records of the file:</h4>
+    <br />
     @foreach (var ex in @Model)
     {
-        <h4>@ex</h4>
+        <p>@ex</p>
         <br/>
     }
-    <button onclick="goBack()">Go Back</button>
+    <input class="btn btn-primary" type="submit" onclick="goBack()" value="Go Back">
 </div>
 
 @section Scripts{
