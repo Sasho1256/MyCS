@@ -1,4 +1,4 @@
-﻿@using MyCS.InputModels
+@using MyCS.InputModels
 @model Microsoft.AspNetCore.Http.IFormFile
 @{
     ViewData["Title"] = "Seed data";
@@ -72,11 +72,9 @@
 
                 <p></p>
                 <p>
-                    Drag one or more files into this drop zone:
+                    Drag a .CSV file into this drop zone:
                 </p>
-
-                <input id="input_zone" type="file" asp-for="@Model" name="file" class="form-control" />
-
+                <input id="input_zone" type="file" asp-for="@Model" name="file" class="form-control" accept=".csv"/>
             </div>
             <br />
             <div id="sub_but_div">
