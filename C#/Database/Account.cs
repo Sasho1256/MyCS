@@ -28,39 +28,41 @@ namespace Database
         [Default("Decline")]
         public string Final_Decision { get; set; }
 
-        [RegularExpression(@"Y|N|(\s)")]
+        [RegularExpression(@"Y|N|(\s)", ErrorMessage = "Cheque_Card_Flag should be Y, N or empty space (null).")]
         public char? Cheque_Card_Flag { get; set; }
 
-        [RegularExpression(@"Y|N|(\s)")]
+        [RegularExpression(@"Y|N|(\s)", ErrorMessage = "Existing_Customer_Flag should be Y, N or empty space (null).")]
         public char? Existing_Customer_Flag { get; set; }
 
-        [RegularExpression(@"Y|N|(\s)")]
+        [RegularExpression(@"Y|N|(\s)", ErrorMessage = "Insurance_Required should be Y, N or empty space (null).")]
         public char? Insurance_Required { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, 20)]
         public int Number_of_Dependants { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, 1500)]
         public int Number_of_Payments { get; set; }
 
-        [RegularExpression("AD|DM|OT|RR")]
+        [RegularExpression("AD|DM|OT|RR", ErrorMessage = "Promotion_Type should be AD, DM, OT or RR.")]
         public string Promotion_Type { get; set; }
 
         [Range(0, int.MaxValue)]
         public double Weight_Factor { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, 2000, ErrorMessage = "Bureau_Score should be between 0 and 2000.")]
         public int Bureau_Score { get; set; }
 
-        [Range(1, 4)]
+        [Range(1, 5, ErrorMessage = "SP_ER_Reference should be between 1 and 5.")]
         public int SP_ER_Reference { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, int.MaxValue, ErrorMessage = "SP_Number_Of_Searches_L6M should be between 0 and 5000.")]
         public int SP_Number_Of_Searches_L6M { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, 100, ErrorMessage = "SP_Number_of_CCJs should be between 0 and 100.")]
         public int SP_Number_of_CCJs { get; set; }
 
+        [RegularExpression("Development|Validation", ErrorMessage = "split should be Development or Validation.")]
+        [Default("Development")]
         public string split { get; set; }
 
         [ForeignKey("Client")]

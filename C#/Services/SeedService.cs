@@ -70,9 +70,12 @@ namespace Services
             var errors = new List<ValidationResult>();
             foreach (var e in records)
             {
-                var vc = new ValidationContext(e, null, null);
-                Validator.TryValidateObject(
-                    e, vc, errors, true);
+                var vcAccount = new ValidationContext(e, null, null);
+                var vcClient = new ValidationContext(e.Client, null, null);
+                var vcLoan = new ValidationContext(e.Loan, null, null);
+                Validator.TryValidateObject(e, vcAccount, errors, true);
+                Validator.TryValidateObject(e.Client, vcClient, errors, true);
+                Validator.TryValidateObject(e.Loan, vcLoan, errors, true);
             }
 
             return errors;

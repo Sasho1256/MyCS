@@ -16,7 +16,7 @@ namespace Services
             Map(x => x.Account_Number).Validate(x => CreateExceptionMessage("Account_Number", x.Field.Length != 11, "Account Number should be 11 symbols long. "));
             //client
             Map(m => m.Client.Application_Date).Name("Application_Date").Convert(x => ConvertStringToDateTime(x.Row[4]));
-            Map(m => m.Client.Current_Delinquency_status).Name("Current_Delinquency_status").Validate(x => CreateExceptionMessage("Current_Delinquency_status", int.Parse(x.Field) > 255 || int.Parse(x.Field) < 0, "Current_Delinquency_status should be between 0 and 255."));
+            Map(m => m.Client.Current_Delinquency_status).Name("Current_Delinquency_status");
             Map(c => c.Client.Application_Score).Name("Application_Score");
             Map(c => c.Client.Gross_Annual_Income).Name("Gross_Annual_Income");
             Map(c => c.Client.Home_Telephone_Number).Name("Home_Telephone_Number");
