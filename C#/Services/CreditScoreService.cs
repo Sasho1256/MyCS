@@ -17,13 +17,14 @@
             this.mapper = mapper;
         }
 
-        public async Task CreateRecordFromManualInput(ManualInputModel input)
+        public async Task<Account> CreateRecordFromManualInput(ManualInputModel input)
         {
             var result = mapper.Map<Account>(input);
             result.Client = mapper.Map<Client>(input);
             result.Loan = mapper.Map<Loan>(input);
             // todo: calculate credit score and decide eligibility
             // todo: save to database
+            return result;
         }
     }
 }

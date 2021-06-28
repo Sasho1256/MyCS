@@ -13,9 +13,10 @@ namespace Services
         public AccountMap()
         {
             AutoMap(CultureInfo.InvariantCulture);
-            Map(x => x.Account_Number).Validate(x => x.Field.Length == 11);
+            Map(x => x.Account_Number).Validate(x => CreateExceptionMessage("Account_Number", x.Field.Length != 11, "Account Number should be 11 symbols long. "));
             //client
             Map(m => m.Client.Application_Date).Name("Application_Date").Convert(x => ConvertStringToDateTime(x.Row[4]));
+            Map(m => m.Client.Current_Delinquency_status).Name("Current_Delinquency_status");
             Map(c => c.Client.Application_Score).Name("Application_Score");
             Map(c => c.Client.Gross_Annual_Income).Name("Gross_Annual_Income");
             Map(c => c.Client.Home_Telephone_Number).Name("Home_Telephone_Number");
@@ -37,17 +38,33 @@ namespace Services
 
         private DateTime ConvertStringToDateTime(string input)
         {
-            if (input != null)
+            if (string.IsNullOrEmpty(input))
             {
-                string year = input.Substring(0, 4) + "/";
-                string month = input.Substring(4, 2) + "/";
-                string day = input.Substring(6, 2);
-                // todo: try-catch and return exception if invalid data
-                DateTime a;
-                var date = DateTime.TryParse(year + month + day, out a);
-                return date ? a : new DateTime(2000, 1, 1);
+                throw new Exception($"Column Application_Date cannot be null or empty.");
             }
-            return new DateTime(2000, 1, 1);
+            string year = input.Substring(0, 4) + "/";
+            string month = input.Substring(4, 2) + "/";
+            string day = input.Substring(6, 2);
+            DateTime a;
+            try
+            {
+                a = DateTime.Parse(year + month + day);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message + $"Exception occured at column Application_Date in row ");
+            }
+            
+            return a;
+        }
+
+        private bool CreateExceptionMessage(string columnName, bool trigger, string additionalInfo = "")
+        {
+            if (trigger)
+            {
+                throw new Exception($"{additionalInfo}" + $"Exception occured at column {columnName} in row ");
+            }
+            return true;
         }
     }
 }

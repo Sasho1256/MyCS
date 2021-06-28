@@ -47,11 +47,10 @@ namespace MyCS.Controllers
         [HttpPost]
         public async Task<IActionResult> Bulk(IFormFile file)
         {
-            var exceptions = await seeder.SeedRecords(new CsvFile() { File = file });
+            var exceptions = await seeder.SeedRecords(file);
             if (exceptions.Count != 0)
             {
-                var ex = exceptions.Select(x => x.RawRecord).ToList();
-                return this.RedirectToAction("Error", "Home", new { exceptions = ex });
+                return this.RedirectToAction("Error", "Home", new { exceptions });
             }
 
             return this.Redirect("/");

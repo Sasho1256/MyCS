@@ -1,12 +1,12 @@
-﻿using MyCS.InputModels;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Services
 {
     using System.Collections.Generic;
+    using Microsoft.AspNetCore.Http;
 
     public interface ISeedService
     {
-        public Task<ICollection<ExceptionModel>> SeedRecords(CsvFile file);
+        public Task<ICollection<string>> SeedRecords(IFormFile file);
     }
 }

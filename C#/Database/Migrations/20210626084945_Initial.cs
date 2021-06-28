@@ -294,6 +294,12 @@ namespace Database.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Accounts_Account_Number",
+                table: "Accounts",
+                column: "Account_Number",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Accounts_Client_Id",
                 table: "Accounts",
                 column: "Client_Id");
