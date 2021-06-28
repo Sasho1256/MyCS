@@ -16,28 +16,37 @@ namespace Services
     using System.Threading;
     using CsvHelper.Configuration;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Http.Internal;
     using Microsoft.EntityFrameworkCore;
 
     public class SeedService : ISeedService
     {
         private readonly MyCsDbContext context;
+        private ICreditScoreService scoreService;
 
-        public SeedService(MyCsDbContext context)
+        public SeedService(MyCsDbContext context, ICreditScoreService scoreService)
         {
             this.context = context;
+            this.scoreService = scoreService;
         }
 
-        public async Task<ICollection<string>> SeedRecords(IFormFile file)
+        public async Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file)
         {
             await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.FileName}", FileMode.Create);
             await file.CopyToAsync(dirStr);
             dirStr.Close();
 
             using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.FileName}");
-            using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
+            using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture) 
+            {
+                HeaderValidated = null,
+                MissingFieldFound = null
+            });
+
             csv.Context.RegisterClassMap<AccountMap>();
             var records = new List<Account>();
             var exceptions = new List<string>();
+
             try
             {
                 records = csv.GetRecords<Account>().ToList();
@@ -49,6 +58,11 @@ namespace Services
 
             var errors = this.ValidateBeforeDatabase(records);
             exceptions.AddRange(errors.Select(error => error.ErrorMessage));
+
+            foreach (var item in records)
+            {
+                scoreService.CalculateScore(item);
+            }
 
             if (errors.Count == 0)
             {
@@ -62,7 +76,21 @@ namespace Services
                     exceptions.Add(e.InnerException != null ? e.InnerException.Message : e.Message);
                 }
             }
-            return exceptions;
+
+            var dic = new Dictionary<ICollection<Account>, ICollection<string>>();
+            dic.Add(records, exceptions);
+            return dic;
+        }
+
+        public IFormFile UpdatedCSVFile(ICollection<Account> accounts, string path)
+        {
+            var file = File.Create(path);
+            using (var writer = new StreamWriter(path)) 
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(accounts);
+            }
+            return new FormFile(file, 0, file.Length, "name", file.Name);
         }
 
         private List<ValidationResult> ValidateBeforeDatabase(List<Account> records)

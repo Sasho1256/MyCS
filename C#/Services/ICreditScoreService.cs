@@ -7,5 +7,6 @@
     public interface ICreditScoreService
     {
         public Task<Account> CreateRecordFromManualInput(ManualInputModel input);
+        public void CalculateScore(Account result);
     }
 }

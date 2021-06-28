@@ -6,12 +6,10 @@ namespace MyCS.InputModels
     public class ManualInputModel 
     {
         #region financial info
-        [Required]
         [StringLength(11, ErrorMessage = "Account number cannot be more or less than 11 symbols.")]
         [Display(Name = "Account Number")]
         public string Account_Number { get; set; }
 
-        [Required]
         [Display(Name = "Account Type")]
         public string Account_Type { get; set; }
 

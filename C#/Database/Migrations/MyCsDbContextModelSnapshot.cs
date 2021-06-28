@@ -41,6 +41,12 @@ namespace Database.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Client_Id");
 
+                    b.Property<int?>("Credit_Score")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Eligibility")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Existing_Customer_Flag")
                         .HasColumnType("varchar(1)");
 
@@ -60,6 +66,9 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Promotion_Type")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Reasons")
                         .HasColumnType("longtext");
 
                     b.Property<int>("SP_ER_Reference")
@@ -107,8 +116,8 @@ namespace Database.Migrations
                     b.Property<int>("Application_Score")
                         .HasColumnType("int");
 
-                    b.Property<byte?>("Current_Delinquency_status")
-                        .HasColumnType("tinyint unsigned");
+                    b.Property<int?>("Current_Delinquency_status")
+                        .HasColumnType("int");
 
                     b.Property<string>("GB_Flag")
                         .HasColumnType("longtext");

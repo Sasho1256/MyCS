@@ -65,6 +65,14 @@ namespace Database
         [Default("Development")]
         public string split { get; set; }
 
+        [Default(0)]
+        public int? Credit_Score { get; set; }
+
+        [Default(false)]
+        public bool? Eligibility { get; set; }
+
+        public string Reasons { get; set; }
+
         [ForeignKey("Client")]
         [Column("Client_Id")]
         [Ignore]
