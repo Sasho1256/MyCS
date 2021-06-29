@@ -34,6 +34,7 @@
         public void CalculateScore(Account result)
         {
             int score = 0;
+            int Payment_Period = 0;
 
             #region Gross_Annual_Income
 
@@ -199,9 +200,33 @@
             }
             #endregion
             //==========================
+            #region Age_of_Applicant
+
+            if (result.Client.Age_of_Applicant >= 18 && result.Client.Age_of_Applicant < 28)
+            {
+                score += 10;
+            }
+            else if (result.Client.Age_of_Applicant >= 28 && result.Client.Age_of_Applicant < 38)
+            {
+                score += 20;
+            }
+            else if (result.Client.Age_of_Applicant >= 38 && result.Client.Age_of_Applicant < 48)
+            {
+                score += 50;
+            }
+            else if (result.Client.Age_of_Applicant >= 48 && result.Client.Age_of_Applicant < 55)
+            {
+                score += 40;
+            }
+            else if (result.Client.Age_of_Applicant >= 55)
+            {
+                score += 30;
+            }
+            #endregion
+            //==========================
 
             result.Credit_Score = score;
-            if (score > 5)                 //TODO: ADD REAL MIDDLEPOINT
+            if (score > 200)
             {
                 result.Eligibility = true;
             }
