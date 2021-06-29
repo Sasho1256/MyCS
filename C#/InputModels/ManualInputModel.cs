@@ -29,7 +29,6 @@ namespace MyCS.InputModels
         [Range(0, int.MaxValue, ErrorMessage = "Please enter a positive number.")]
         public int Number_of_Payments { get; set; }
 
-        [Required]
         [Display(Name = "Promotion Type")]
         public string Promotion_Type { get; set; }
 
@@ -38,9 +37,7 @@ namespace MyCS.InputModels
         [Range(0, int.MaxValue, ErrorMessage = "Enter a positive number.")]
         public int Bureau_Score { get; set; }
 
-        [Required]
         [Display(Name = "Electoral Role")]
-        [Range(1, 4, ErrorMessage = "Enter a number between 1 and 4.")]
         public int SP_ER_Reference { get; set; }
 
         [Required]
@@ -59,9 +56,7 @@ namespace MyCS.InputModels
         [Range(18, 120, ErrorMessage = "Enter a number between 18 and 120.")]
         public int Age_of_Applicant { get; set; }
 
-        [Required]
         [Display(Name = "Current Delinquency status")]
-        [Range(0, 1, ErrorMessage = "Enter a number between 0 and 1.")]
         public byte? Current_Delinquency_status { get; set; }
 
         [Required]

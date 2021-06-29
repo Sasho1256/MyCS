@@ -69,32 +69,11 @@
 				<span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
 			</div>
 
-			@*<div class="form-group">
-				<label asp-for="Current_Delinquency_status"></label>
-				<input asp-for="Current_Delinquency_status" class="form-control" placeholder="Enter current delinquency status" />
-				<span asp-validation-for="Current_Delinquency_status" class="text-danger"></span>
-			</div>*@
-
-			@*<label asp-for="Application_Date"></label>
-				<div id="datepicker" class="input-group date separated" data-date-format="mm-dd-yyyy">
-					<input class="form-control" type="text" asp-for="Application_Date" readonly />
-					<div class="input-group-text">
-						<span class="input-group-addon"><ion-icon name="calendar-outline"></ion-icon> Date</span>
-					</div>
-				</div>
-				<span asp-validation-for="Application_Date" class="text-danger"></span>*@
-
 			<div class="form-group">
 				<label asp-for="Gross_Annual_Income"></label>
 				<input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" />
 				<span asp-validation-for="Gross_Annual_Income" class="text-danger"></span>
 			</div>
-
-			@*<label>Do you have a home telephone number?</label><br />
-				<input asp-for="Home_Telephone_Number" type="radio" value="Y">
-				<label asp-for="Home_Telephone_Number">Yes</label>
-				<input asp-for="Home_Telephone_Number" type="radio" value="N">
-				<label asp-for="Home_Telephone_Number">No</label><br><br>*@
 
 			<label>Marital Status</label><br />
 			<select asp-for="Marital_Status">
@@ -124,99 +103,17 @@
 			</select><br>
 			<span asp-validation-for="Residential_Status" class="text-danger"></span><br>
 
-			@*<div class="form-group">
-				<label asp-for="Time_at_Address"></label>
-				<input asp-for="Time_at_Address" class="form-control" placeholder="Enter time at address" />
-				<span asp-validation-for="Time_at_Address" class="text-danger"></span>
-			</div>*@
-
-			@*<div class="form-group">
-				<label asp-for="Time_in_Employment"></label>
-				<input asp-for="Time_in_Employment" class="form-control" placeholder="Enter time in employment" />
-				<span asp-validation-for="Time_in_Employment" class="text-danger"></span>
-			</div>*@
-
-			@*<div class="form-group">
-					<label asp-for="Time_with_Bank"></label>
-					<input asp-for="Time_with_Bank" class="form-control" placeholder="Enter time with bank" />
-					<span asp-validation-for="Time_with_Bank" class="text-danger"></span>
-				</div>*@
-
 			<div class="row">
 				<div class="col"><hr></div>
 				<div class="col-auto">Financial information</div>
 				<div class="col"><hr></div>
 			</div>
 
-			@*<div class="form-group">
-					<label asp-for="Account_Number"></label>
-					<input asp-for="Account_Number" class="form-control" placeholder="Enter your account number" />
-					<span asp-validation-for="Account_Number" class="text-danger"></span>
-				</div>*@
-
-			@*<label>Account Type</label><br />
-				<input asp-for="Account_Type" type="radio" value="FL">
-				<label asp-for="Account_Type">Fixed Loan</label>
-				<input asp-for="Account_Type" type="radio" value="VL">
-				<label asp-for="Account_Type">Variable Loan</label><br />
-				<span asp-validation-for="Account_Type" class="text-danger"></span><br>*@
-
-			@*<label>Do you have a cheque card?</label><br />
-			<input asp-for="Cheque_Card_Flag" type="radio" value="Y">
-			<label asp-for="Cheque_Card_Flag">Yes</label>
-			<input asp-for="Cheque_Card_Flag" type="radio" value="N">
-			<label asp-for="Cheque_Card_Flag">No</label><br><br>*@
-
-			@*<label>Do you have the required insurance?</label><br />
-				<input asp-for="Insurance_Required" type="radio" value="Y">
-				<label asp-for="Insurance_Required">Yes</label>
-				<input asp-for="Insurance_Required" type="radio" value="N">
-				<label asp-for="Insurance_Required">No</label><br><br>*@
-
 			<div class="form-group">
 				<label asp-for="Number_of_Dependants"></label>
 				<input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" />
 				<span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
 			</div>
-
-			@*<div class="form-group">
-				<label asp-for="Number_of_Payments"></label>
-				<input asp-for="Number_of_Payments" class="form-control" placeholder="Enter the number of payments" />
-				<span asp-validation-for="Number_of_Payments" class="text-danger"></span>
-			</div>*@
-
-			@*<label>Promotion Type</label><br />
-			<select asp-for="Promotion_Type">
-				<option value="AD">AD</option>
-				<option value="DM">DM</option>
-				<option value="OT">OT</option>
-				<option value="RR">RR</option>
-			</select><br>
-			<span asp-validation-for="Promotion_Type" class="text-danger"></span><br>*@
-
-			@*<div class="form-group">
-				<label asp-for="Bureau_Score"></label>
-				<input asp-for="Bureau_Score" class="form-control" placeholder="Enter bureau score" />
-				<span asp-validation-for="Bureau_Score" class="text-danger"></span>
-			</div>*@
-
-			@*<div class="form-group">
-				<label asp-for="SP_ER_Reference"></label>
-				<input asp-for="SP_ER_Reference" class="form-control" placeholder="Enter electoral role reference" />
-				<span asp-validation-for="SP_ER_Reference" class="text-danger"></span>
-			</div>*@
-
-			@*<div class="form-group">
-				<label asp-for="SP_Number_Of_Searches_L6M"></label>
-				<input asp-for="SP_Number_Of_Searches_L6M" class="form-control" placeholder="Enter the number of searches" />
-				<span asp-validation-for="SP_Number_Of_Searches_L6M" class="text-danger"></span>
-			</div>*@
-
-			@*<div class="form-group">
-				<label asp-for="SP_Number_of_CCJs"></label>
-				<input asp-for="SP_Number_of_CCJs" class="form-control" placeholder="Enter the number of CCJs" />
-				<span asp-validation-for="SP_Number_of_CCJs" class="text-danger"></span>
-			</div>*@
 
 			<div class="row">
 				<div class="col"><hr></div>
@@ -237,14 +134,6 @@
 				<option value="F">Two times per month</option>
 				<option value="X" selected>Not given</option>
 			</select><br><br>
-
-			@*<label>Loan Payment Method</label><br />
-			<select asp-for="Loan_Payment_Method">
-				<option value="B">Bank Payment</option>
-				<option value="Q">Cheque</option>
-				<option value="S">Standing  Order</option>
-				<option value="X" selected>Not given</option>
-			</select><br>*@
 
 			<br />
 			<div id="sub_but_div">
