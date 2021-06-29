@@ -231,5 +231,19 @@
                 result.Eligibility = true;
             }
         }
+
+        public string GenerateAccountNumber()
+        {
+            List<string> nums = "1 2 3 4 5 6 7 8 9 0".Split(" ").ToList();
+            Random rand = new Random();
+            string accNum = "";
+
+            for (int i = 1; i <= 11; i++)
+            {
+                accNum += $"{nums[rand.Next(nums.Count - 1)]}";
+            }
+
+            return accNum;
+        }
     }
 }
