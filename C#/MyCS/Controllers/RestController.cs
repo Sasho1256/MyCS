@@ -8,6 +8,8 @@
     using Services;
     using Microsoft.AspNetCore.Http;
     using System.Linq;
+    using System;
+    using System.Net.Mime;
 
     [ApiController]
     public class RestController : ControllerBase
@@ -33,14 +35,21 @@
                 return RedirectToAction("Error", "Home", new { exceptions = dictionary.First().Value });
             }
 
-            //TODO: FIX THIS EXCEPTION - TypeLoadException: Could not load type 'Microsoft.AspNetCore.Http.Internal.FormFile' from assembly 'Microsoft.AspNetCore.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'.
-            var file = this.seedService.UpdatedCSVFile(dictionary.First().Key, $"{this.Request.Scheme}://{this.Request.Host}/UploadedFiles/{csv.FileName}");
-
-            return this.Ok(new
+            try
             {
-                fileUrl = $"{this.Request.Scheme}://{this.Request.Host}/UploadedFiles/{csv.FileName}" ,
-                dictionary
-            });
+                var filePath = this.seedService.UpdatedCSVFile(dictionary.First().Key, $".\\wwwroot\\Results\\{ DateTime.Now.ToString("yyyyMMddHHmmss") }_results_{csv.FileName}");
+                return this.File(filePath, MediaTypeNames.Text.Plain);
+                //return this.Ok(new
+                //{
+                //    fileUrl = $"{this.Request.Scheme}://{this.Request.Host}/UploadedFiles/{csv.FileName}",
+                //    dictionary
+                //});
+            }
+            catch (Exception ex)
+            {
+                dictionary.First().Value.Add(ex.Message);
+                return RedirectToAction("Error", "Home", new { exceptions = dictionary.First().Value });
+            }
         }
 
         [HttpPost("manual/calculate")]

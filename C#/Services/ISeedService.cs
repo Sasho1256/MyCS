@@ -11,6 +11,6 @@ namespace Services
     {
         public Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file);
 
-        public IFormFile UpdatedCSVFile(ICollection<Account> accounts, string path);
+        public string UpdatedCSVFile(ICollection<Account> accounts, string path);
     }
 }

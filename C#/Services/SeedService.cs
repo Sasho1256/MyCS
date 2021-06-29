@@ -82,15 +82,18 @@ namespace Services
             return dic;
         }
 
-        public IFormFile UpdatedCSVFile(ICollection<Account> accounts, string path)
+        public string UpdatedCSVFile(ICollection<Account> accounts, string path)
         {
             var file = File.Create(path);
-            using (var writer = new StreamWriter(path)) 
+            using (var writer = new StreamWriter(path))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.WriteRecords(accounts);
+                writer.Close();
             }
-            return new FormFile(file, 0, file.Length, "name", file.Name);
+            file.Close();
+            //FormFile file1 = new FormFile(file, 0, file.Length, "name", file.Name);
+            return path;
         }
 
         private List<ValidationResult> ValidateBeforeDatabase(List<Account> records)
