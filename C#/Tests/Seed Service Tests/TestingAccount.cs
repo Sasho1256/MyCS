@@ -1,4 +1,4 @@
-﻿namespace Tests
+﻿namespace Tests.Seed_Service_Tests
 {
     using System.Collections.Generic;
     using System.IO;
@@ -42,24 +42,7 @@
         }
 
         [Test]
-        public async Task ShouldSeedDataBeInputtedCorrectly()
-        {
-            using (var stream = File.OpenRead("../../../Data/file.csv"))
-            {
-                var file = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name))
-                {
-                    Headers = new HeaderDictionary(),
-                    ContentType = "text/csv"
-                };
-                var seedService = new SeedService(dbContext, creditScoreService, validationService);
-                await seedService.SeedRecords(file, Directory.GetCurrentDirectory());
-            }
-
-            Assert.AreEqual(dbContext.Accounts.Count(), 2);
-        }
-
-        [Test]
-        public async Task ShouldThrowExceptionsIfAccountAcceptIsIncorrect()
+        public async Task ShouldThrowExceptionsIfAccountIsIncorrect()
         {
             using (var stream = File.OpenRead("../../../Data/account_error.csv"))
             {
