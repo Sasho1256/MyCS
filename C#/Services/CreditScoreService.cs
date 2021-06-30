@@ -43,6 +43,7 @@
         {
             int score = 0;
 
+            //==========================
             #region Gross_Annual_Income
 
             if (result.Client.Gross_Annual_Income >= 0 && result.Client.Gross_Annual_Income < 10_000)
@@ -141,7 +142,7 @@
             {
                 score += 10;
             }
-            #endregion
+            #endregion 
             //==========================
             #region Occupation_Code
 
@@ -209,8 +210,8 @@
             //==========================
             #region Loan_To_Income
 
-            //if (result.Loan.Loan_To_Income == 0)
-            //{
+            if (result.Loan.Loan_To_Income == 0)
+            {
                 if (result.Loan.Loan_Amount == 0)
                 {
                     result.Loan.Loan_To_Income = -9999998;
@@ -224,7 +225,7 @@
                     double loanToIncome = (result.Loan.Loan_Amount * 1.0 / result.Client.Gross_Annual_Income * 1.0) * 100.0;
                     result.Loan.Loan_To_Income = Math.Round(loanToIncome, 2);
                 }
-            //}
+            }
 
 
             if (result.Loan.Loan_To_Income == -9999998)
