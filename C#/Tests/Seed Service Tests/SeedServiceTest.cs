@@ -1,4 +1,4 @@
-﻿namespace Tests
+﻿namespace Tests.Seed_Service_Tests
 {
     using System.IO;
     using System.Linq;
