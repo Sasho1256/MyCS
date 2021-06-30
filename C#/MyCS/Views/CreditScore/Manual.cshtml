@@ -1,156 +1,157 @@
 ﻿@model MyCS.InputModels.ManualInputModel
 @{
-	this.ViewData["Title"] = "Manual form";
+    this.ViewData["Title"] = "Manual form";
 }
 <style>
-	body {
-		background: url("../img/finance1.jpg") no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-	}
+    body {
+        background: url("../img/finance1.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 
-	div {
-		height: 87.25%;
-	}
+    div {
+        height: 87.25%;
+    }
 
-	form {
-		background: rgba(255,255,255,0.85);
-		backdrop-filter: blur(5px);
-		border-bottom-left-radius: 25px;
-		border-bottom-right-radius: 25px;
-		padding: 50px;
-		margin: auto;
-	}
+    form {
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(5px);
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        padding: 50px;
+        margin: auto;
+    }
 
-	.btn, h1, #sub_but_div {
-		border-radius: 25px;
-		text-align: center;
-	}
+    .btn, h1, #sub_but_div {
+        border-radius: 25px;
+        text-align: center;
+    }
 
-	.container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
-	.datepicker {
-		height: 250px;
-	}
+    .datepicker {
+        height: 250px;
+    }
 
-	p {
-		display: block;
-	}
+    p {
+        display: block;
+    }
 
-	select {
-		border: none;
-		border-radius: 5px;
-		height: 35px
-	}
+    select {
+        border: none;
+        border-radius: 5px;
+        height: 35px
+    }
 </style>
 <body>
-	<div class="container">
-		<form asp-controller="Rest" asp-action="CalculateScoreManual" method="post" enctype="multipart/form-data">
-			<h1 class="display-4">
-				Manual Check
-			</h1>
-			<br />
+    <div class="container">
+        <form asp-controller="Rest" asp-action="CalculateScoreManual" method="post" enctype="multipart/form-data">
+            <h1 class="display-4">
+                Manual Check
+            </h1>
+            <br />
 
-			<div class="row">
-				<div class="col"><hr></div>
-				<div class="col-auto">Personal information</div>
-				<div class="col"><hr></div>
-			</div>
+            <div class="row">
+                <div class="col"><hr></div>
+                <div class="col-auto">Personal information</div>
+                <div class="col"><hr></div>
+            </div>
 
-			<div class="form-group">
-				<label asp-for="Age_of_Applicant"></label>
-				<input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" required min="18" max="100"/>
-				<span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
-			</div>
+            <div class="form-group">
+                <label asp-for="Age_of_Applicant"></label>
+                <input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" required min="18" max="100" />
+                <span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
+            </div>
 
-			<div class="form-group">
-				<label asp-for="Gross_Annual_Income"></label>
-				<input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" required min="0"/>
-				<span asp-validation-for="Gross_Annual_Income" class="text-danger"></span>
-			</div>
+            <div class="form-group">
+                <label asp-for="Gross_Annual_Income"></label>
+                <input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" required min="0" />
+                <span asp-validation-for="Gross_Annual_Income" class="text-danger"></span>
+            </div>
 
-			<label>Marital Status</label><br />
-			<select asp-for="Marital_Status">
-				<option value="M">Married</option>
-				<option value="D">Divorced</option>
-				<option value="S">Single</option>
-				<option value="W">Widow</option>
-				<option value="Z" selected>Other</option>
-			</select><br>
-			<span asp-validation-for="Marital_Status" class="text-danger"></span><br>
+            <label>Marital Status</label><br />
+            <select asp-for="Marital_Status">
+                <option value="M">Married</option>
+                <option value="D">Divorced</option>
+                <option value="S">Single</option>
+                <option value="W">Widow</option>
+                <option value="Z" selected>Other</option>
+            </select><br>
+            <span asp-validation-for="Marital_Status" class="text-danger"></span><br>
 
-			<label>Occupation Code</label><br />
-			<select asp-for="Occupation_Code">
-				<option value="M">Employee</option>
-				<option value="B">Self-employed</option>
-				<option value="P">Pensioner</option>
-				<option value="O" selected>Other</option>
-			</select><br>
-			<span asp-validation-for="Occupation_Code" class="text-danger"></span><br>
+            <label>Occupation Code</label><br />
+            <select asp-for="Occupation_Code">
+                <option value="M">Employee</option>
+                <option value="B">Self-employed</option>
+                <option value="P">Pensioner</option>
+                <option value="O" selected>Other</option>
+            </select><br>
+            <span asp-validation-for="Occupation_Code" class="text-danger"></span><br>
 
-			<label>Residential Status</label><br />
-			<select asp-for="Residential_Status">
-				<option value="H">Homeowner</option>
-				<option value="L">Living with parents</option>
-				<option value="T">Tenant</option>
-				<option value="O" selected>Other</option>
-			</select><br>
-			<span asp-validation-for="Residential_Status" class="text-danger"></span><br>
+            <label>Residential Status</label><br />
+            <select asp-for="Residential_Status">
+                <option value="H">Homeowner</option>
+                <option value="L">Living with parents</option>
+                <option value="T">Tenant</option>
+                <option value="O" selected>Other</option>
+            </select><br>
+            <span asp-validation-for="Residential_Status" class="text-danger"></span><br>
 
-			<div class="row">
-				<div class="col"><hr></div>
-				<div class="col-auto">Financial information</div>
-				<div class="col"><hr></div>
-			</div>
+            <div class="row">
+                <div class="col"><hr></div>
+                <div class="col-auto">Financial information</div>
+                <div class="col"><hr></div>
+            </div>
 
-			<div class="form-group">
-				<label asp-for="Number_of_Dependants"></label>
-				<input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" required min="0"/>
-				<span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
-			</div>
+            <div class="form-group">
+                <label asp-for="Number_of_Dependants"></label>
+                <input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" required min="0" />
+                <span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
+            </div>
 
-			<div class="row">
-				<div class="col"><hr></div>
-				<div class="col-auto">Loan information</div>
-				<div class="col"><hr></div>
-			</div>
+            <div class="row">
+                <div class="col"><hr></div>
+                <div class="col-auto">Loan information</div>
+                <div class="col"><hr></div>
+            </div>
 
-			<div class="form-group">
-				<label asp-for="Loan_Amount"></label>
-				<input asp-for="Loan_Amount" class="form-control" placeholder="Enter loan amount" required min="0"/>
-				<span asp-validation-for="Loan_Amount" class="text-danger"></span>
-			</div>
+            <div class="form-group">
+                <label asp-for="Loan_Amount"></label>
+                <input asp-for="Loan_Amount" class="form-control" placeholder="Enter loan amount" required min="0" />
+                <span asp-validation-for="Loan_Amount" class="text-danger"></span>
+            </div>
 
-			@*<label>Loan Payment Frequency</label><br />
-			<select asp-for="Loan_Payment_Frequency">
-				<option value="M">Monthly</option>
-				<option value="W">Weekly</option>
-				<option value="F">Two times per month</option>
-				<option value="X" selected>Not given</option>
-			</select><br><br>*@
+            @*<label>Loan Payment Frequency</label><br />
+                <select asp-for="Loan_Payment_Frequency">
+                    <option value="M">Monthly</option>
+                    <option value="W">Weekly</option>
+                    <option value="F">Two times per month</option>
+                    <option value="X" selected>Not given</option>
+                </select><br><br>*@
 
-			<br />
-			<div id="sub_but_div">
-				<input class="btn btn-primary separated" type="submit" value="Submit">
-			</div>
-		</form>
-	</div>
+            <br />
+            <div id="sub_but_div">
+                <input id="submit_btn" type="submit" name="Json" value="Data" class="btn btn-primary" />
+                <input id="submit_btn" type="submit" name="Csv" value="Csv" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 
 </body>
 
 @section Scripts{
-	<script>
-		$(function () {
-			$("#datepicker").datepicker({
-				autoclose: true,
-				todayHighlight: true
-			}).datepicker('update', new Date());
-		});
-	</script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                autoclose: true,
+                todayHighlight: true
+            }).datepicker('update', new Date());
+        });
+    </script>
 }

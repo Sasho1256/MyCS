@@ -14,6 +14,7 @@ namespace Services
     using System.ComponentModel.DataAnnotations;
     using System.Net.Http;
     using System.Threading;
+    using System.Xml;
     using CsvHelper.Configuration;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Internal;
@@ -84,17 +85,16 @@ namespace Services
             return dic;
         }
 
-        public string UpdatedCSVFile(ICollection<Account> accounts, string path)
+        public string UpdatedCsvFile(ICollection<Account> accounts, string path)
         {
-            var file = File.Create(path); 
-            using (var writer = new StreamWriter(path))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            var file = File.CreateText(path);
+            var outputRecords = accounts.Select(x => new
             {
-                csv.WriteRecords(accounts);
-                writer.Close();
-            }
-            file.Close();
-            //FormFile file1 = new FormFile(file, 0, file.Length, "name", file.Name);
+                x.Account_Number,
+                x.Credit_Score
+            }).ToList();
+            using var csv = new CsvWriter(file, CultureInfo.InvariantCulture);
+            csv.WriteRecords(outputRecords);
             return path;
         }
     }

@@ -1,0 +1,2 @@
+Account_Number,Account_Type,Final_Decision,Cheque_Card_Flag,Existing_Customer_Flag,Insurance_Required,Number_of_Dependants,Number_of_Payments,Promotion_Type,Weight_Factor,Bureau_Score,SP_ER_Reference,SP_Number_Of_Searches_L6M,SP_Number_of_CCJs,split,Credit_Score,Eligibility,Reasons
+10352289234,FL,Accept,Y,N,N,3,999,RR,2,945,1,9,0,Validation,260,True,

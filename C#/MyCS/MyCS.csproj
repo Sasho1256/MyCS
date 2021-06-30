@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Results\" />
     <Folder Include="wwwroot\UploadedFiles\" />
   </ItemGroup>
 

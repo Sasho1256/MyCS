@@ -9,6 +9,8 @@
     using Microsoft.AspNetCore.Http;
     using System.Linq;
     using System;
+    using System.Collections.Generic;
+    using System.IO;
     using System.Net.Mime;
     using System.Net;
 
@@ -33,18 +35,29 @@
             var dictionary = await this.seedService.SeedRecords(csv, ".\\wwwroot\\UploadedFiles\\");
             if (dictionary.First().Value.Count != 0)
             {
-                return RedirectToAction("Error", "Home", new { exceptions = dictionary.First().Value });
+                return this.BadRequest(new
+                {
+                    dictionary.First().Value
+                });
             }
 
             try
             {
-                var filePath = this.seedService.UpdatedCSVFile(dictionary.First().Key, $".\\wwwroot\\Results\\{ DateTime.Now.ToString("yyyyMMddHHmmss") }_results_{csv.FileName}");
-                return this.File(filePath, MediaTypeNames.Text.Plain);
-                //return this.Ok(new
-                //{
-                //    fileUrl = $"{this.Request.Scheme}://{this.Request.Host}/UploadedFiles/{csv.FileName}",
-                //    dictionary
-                //});
+                if (!string.IsNullOrWhiteSpace(Request.Form["Json"]))
+                {
+                    return this.Ok(new
+                    {
+                        dictionary.First().Key
+                    });
+                }
+                else if (!string.IsNullOrWhiteSpace(Request.Form["Csv"]))
+                {
+                    var filePath = this.seedService.UpdatedCsvFile(dictionary.First().Key, $"{Directory.GetCurrentDirectory()}\\wwwroot\\Results\\{ DateTime.Now.ToString("yyyyMMddHHmmss") }_results_{csv.FileName}");
+                    var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
+                    return File(bytes, MediaTypeNames.Application.Octet, Path.GetFileName(filePath));
+                }
+
+                return this.NotFound();
             }
             catch (Exception ex)
             {
@@ -60,7 +73,18 @@
 
             if (this.ModelState.IsValid)
             {
-                return this.Ok(res.First().Key);
+                if (!string.IsNullOrWhiteSpace(Request.Form["Json"]))
+                {
+                    return this.Ok(res.First().Key);
+                }
+                else if (!string.IsNullOrWhiteSpace(Request.Form["Csv"]))
+                {
+                    var filePath = this.seedService.UpdatedCsvFile(new List<Account>(){ res.First().Key }, $"{Directory.GetCurrentDirectory()}\\wwwroot\\Results\\{ DateTime.Now.ToString("yyyyMMddHHmmss") }_results_single.csv");
+                    var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
+                    return File(bytes, MediaTypeNames.Application.Octet, Path.GetFileName(filePath));
+                }
+
+                return this.NotFound();
             }
 
             return this.BadRequest(this.ModelState.Root.Errors.Select(x => x.ErrorMessage));
