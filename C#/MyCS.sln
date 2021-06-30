@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputModels", "InputModels\InputModels.csproj", "{636DCFA4-1C7E-4322-9C85-C3B976FFD23C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F0473D45-8CBF-4761-A3D4-280730D4D301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{F0473D45-8CBF-4761-A3D4-280730D4D301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
