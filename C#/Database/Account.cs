@@ -37,16 +37,16 @@ namespace Database
         [RegularExpression(@"Y|N|(\s)", ErrorMessage = "Insurance_Required should be Y, N or empty space (null).")]
         public char? Insurance_Required { get; set; }
 
-        [Range(0, 20)]
+        [Range(0, 20, ErrorMessage = "Number_of_Dependants should be a number between 0 and 20.")]
         public int Number_of_Dependants { get; set; }
 
-        [Range(0, 1500)]
+        [Range(0, 1500, ErrorMessage = "Number_of_Payments should be a number between 0 and 1500.")]
         public int Number_of_Payments { get; set; }
 
         [RegularExpression("AD|DM|OT|RR", ErrorMessage = "Promotion_Type should be AD, DM, OT or RR.")]
         public string Promotion_Type { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, int.MaxValue, ErrorMessage = "Weight_Factor should be a positive number or 0.")]
         public double Weight_Factor { get; set; }
 
         [Range(0, 2000, ErrorMessage = "Bureau_Score should be between 0 and 2000.")]
@@ -61,7 +61,7 @@ namespace Database
         [Range(0, 100, ErrorMessage = "SP_Number_of_CCJs should be between 0 and 100.")]
         public int SP_Number_of_CCJs { get; set; }
 
-        [RegularExpression("Development|Validation", ErrorMessage = "split should be Development or Validation.")]
+        [RegularExpression("Development|Validation", ErrorMessage = "Split should be Development or Validation.")]
         [Default("Development")]
         public string split { get; set; }
 

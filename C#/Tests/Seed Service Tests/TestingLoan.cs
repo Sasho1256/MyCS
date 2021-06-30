@@ -1,5 +1,6 @@
 ﻿namespace Tests
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,7 +13,7 @@
     using Services;
     using Services.Mappings;
 
-    public class SeedServiceTest
+    public class TestingLoan
     {
 
         private MyCsDbContext dbContext;
@@ -55,6 +56,34 @@
             }
 
             Assert.AreEqual(dbContext.Accounts.Count(), 2);
+        }
+
+        [Test]
+        public async Task ShouldThrowExceptionsIfAccountAcceptIsIncorrect()
+        {
+            using (var stream = File.OpenRead("../../../Data/loan_error.csv"))
+            {
+                var file = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name))
+                {
+                    Headers = new HeaderDictionary(),
+                    ContentType = "text/csv"
+                };
+                var seedService = new SeedService(dbContext, creditScoreService, validationService);
+                var exceptions = await seedService.SeedRecords(file, Directory.GetCurrentDirectory());
+                var message = exceptions.First().Value.ToList();
+                //Assert.AreEqual(exceptions.Count, 1);
+                //Assert.AreEqual(message, "Final_Decision should be Accept or Decline.");
+
+                var exceptionsM = new List<string>()
+                {
+                    "Loan_Amount should be between 0 and 1000000.",
+                    "Loan_Payment_Frequency should be F, M, W, X or Empty.",
+                    "Loan_Payment_Method should be B, Q, S, X or Empty."
+                };
+
+                bool isSuperset = new HashSet<string>(exceptionsM).IsSupersetOf(message);
+                Assert.True(isSuperset);
+            }
         }
     }
 }
