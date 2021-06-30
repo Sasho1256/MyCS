@@ -30,7 +30,7 @@
             result.Account_Number = GenerateAccountNumber();
             CalculateScore(result);
 
-            List<string> exceptions = validationService.ValidateBeforeDatabase(new List<Account> { result }).Select(x => x.ErrorMessage).ToList();
+            List<string> exceptions = validationService.ValidateInputModel(new List<ManualInputModel> { input }).Select(x => x.ErrorMessage).ToList();
             var dic = new Dictionary<Account, List<string>>();
             dic.Add(result, exceptions);
 
@@ -73,7 +73,7 @@
             //==========================
             #region Loan_Amount
 
-            if (result.Loan.Loan_Amount >= 500 && result.Loan.Loan_Amount < 10_000)
+            if (result.Loan.Loan_Amount >= 0 && result.Loan.Loan_Amount < 10_000)
             {
                 score += 60;
             }

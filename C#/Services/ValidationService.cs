@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Services
 {
+    using MyCS.InputModels;
+
     public class ValidationService : IValidationService
     {
         public List<ValidationResult> ValidateBeforeDatabase(List<Account> records)
@@ -21,6 +23,17 @@ namespace Services
                 Validator.TryValidateObject(e, vcAccount, errors, true);
                 Validator.TryValidateObject(e.Client, vcClient, errors, true);
                 Validator.TryValidateObject(e.Loan, vcLoan, errors, true);
+            }
+
+            return errors;
+        }
+        public List<ValidationResult> ValidateInputModel(List<ManualInputModel> records)
+        {
+            var errors = new List<ValidationResult>();
+            foreach (var e in records)
+            {
+                var vcAccount = new ValidationContext(e, null, null);
+                Validator.TryValidateObject(e, vcAccount, errors, true);
             }
 
             return errors;

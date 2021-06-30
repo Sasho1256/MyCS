@@ -32,13 +32,13 @@ namespace Services
             this.validationService = validationService;
         }
 
-        public async Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file)
+        public async Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file, string path)
         {
-            await using var dirStr = new FileStream($".\\wwwroot\\UploadedFiles\\{file.FileName}", FileMode.Create);
+            await using var dirStr = new FileStream(path + $"{file.FileName}", FileMode.Create);
             await file.CopyToAsync(dirStr);
             dirStr.Close();
 
-            using var reader = new StreamReader($".\\wwwroot\\UploadedFiles\\{file.FileName}");
+            using var reader = new StreamReader(path + $"{file.FileName}");
             using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture) 
             {
                 HeaderValidated = null,
@@ -86,7 +86,7 @@ namespace Services
 
         public string UpdatedCSVFile(ICollection<Account> accounts, string path)
         {
-            var file = File.Create(path);
+            var file = File.Create(path); 
             using (var writer = new StreamWriter(path))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {

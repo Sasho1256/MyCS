@@ -47,7 +47,7 @@ namespace MyCS.Controllers
         [HttpPost]
         public async Task<IActionResult> Bulk(IFormFile file)
         {
-            var exceptions = await seeder.SeedRecords(file);
+            var exceptions = await seeder.SeedRecords(file, ".\\wwwroot\\UploadedFiles\\");
             if (exceptions.Count != 0)
             {
                 return this.RedirectToAction("Error", "Home", new { exceptions });

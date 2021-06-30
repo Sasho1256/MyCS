@@ -65,13 +65,13 @@
 
 			<div class="form-group">
 				<label asp-for="Age_of_Applicant"></label>
-				<input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" />
+				<input asp-for="Age_of_Applicant" class="form-control" placeholder="Enter age" required min="18" max="100"/>
 				<span asp-validation-for="Age_of_Applicant" class="text-danger"></span>
 			</div>
 
 			<div class="form-group">
 				<label asp-for="Gross_Annual_Income"></label>
-				<input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" />
+				<input asp-for="Gross_Annual_Income" class="form-control" placeholder="Enter gross annual income" required min="0"/>
 				<span asp-validation-for="Gross_Annual_Income" class="text-danger"></span>
 			</div>
 
@@ -111,7 +111,7 @@
 
 			<div class="form-group">
 				<label asp-for="Number_of_Dependants"></label>
-				<input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" />
+				<input asp-for="Number_of_Dependants" class="form-control" placeholder="Enter the number of dependants" required min="0"/>
 				<span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
 			</div>
 
@@ -123,7 +123,7 @@
 
 			<div class="form-group">
 				<label asp-for="Loan_Amount"></label>
-				<input asp-for="Loan_Amount" class="form-control" placeholder="Enter loan amount" />
+				<input asp-for="Loan_Amount" class="form-control" placeholder="Enter loan amount" required min="0"/>
 				<span asp-validation-for="Loan_Amount" class="text-danger"></span>
 			</div>
 

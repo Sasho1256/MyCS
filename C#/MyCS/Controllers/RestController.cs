@@ -30,7 +30,7 @@
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> CalculateScoreCsv([FromForm(Name = "file")] IFormFile csv)
         {
-            var dictionary = await this.seedService.SeedRecords(csv);
+            var dictionary = await this.seedService.SeedRecords(csv, ".\\wwwroot\\UploadedFiles\\");
             if (dictionary.First().Value.Count != 0)
             {
                 return RedirectToAction("Error", "Home", new { exceptions = dictionary.First().Value });
@@ -57,12 +57,13 @@
         public async Task<IActionResult> CalculateScoreManual([FromForm] ManualInputModel input)
         {
             var res = await this.creditScoreService.CreateRecordFromManualInput(input);
+
             if (this.ModelState.IsValid)
             {
                 return this.Ok(res.First().Key);
             }
 
-            return this.BadRequest(res.First().Value);
+            return this.BadRequest(this.ModelState.Root.Errors.Select(x => x.ErrorMessage));
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Services
 
     public interface ISeedService
     {
-        public Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file);
+        public Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file, string path);
 
         public string UpdatedCSVFile(ICollection<Account> accounts, string path);
     }
