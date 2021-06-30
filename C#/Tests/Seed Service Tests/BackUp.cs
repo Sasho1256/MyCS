@@ -18,7 +18,7 @@ namespace Tests.Seed_Service_Tests
     using Services;
     using Services.Mappings;
 
-    class InputTests
+    class BackUp
     {
         private MyCsDbContext dbContext;
         private IValidationService validationService;
@@ -64,24 +64,5 @@ namespace Tests.Seed_Service_Tests
                 Assert.AreEqual(message, "Final_Decision should be Accept or Decline.");
             }
         }
-
-        //[Test]
-        //public async Task ShouldThrowExceptionsIfPropertyAcceptIsIncorrect()
-        //{
-        //    using (var stream = File.OpenRead("../../../Data/accept_error.csv"))
-        //    {
-        //        var file = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name))
-        //        {
-        //            Headers = new HeaderDictionary(),
-        //            ContentType = "text/csv"
-        //        };
-        //        var seedService = new SeedService(dbContext, creditScoreService, validationService);
-        //        var exceptions = await seedService.SeedRecords(file, Directory.GetCurrentDirectory());
-        //        var message = exceptions.First().Value.ToList().First();
-        //        Assert.AreEqual(exceptions.Count, 1);
-        //        Assert.AreEqual(message, "Final_Decision should be Accept or Decline.");
-        //    }
-        //}
-
     }
 }
