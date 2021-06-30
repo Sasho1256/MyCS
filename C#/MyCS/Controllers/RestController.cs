@@ -10,6 +10,7 @@
     using System.Linq;
     using System;
     using System.Net.Mime;
+    using System.Net;
 
     [ApiController]
     public class RestController : ControllerBase
@@ -56,7 +57,12 @@
         public async Task<IActionResult> CalculateScoreManual([FromForm] ManualInputModel input)
         {
             var res = await this.creditScoreService.CreateRecordFromManualInput(input);
-            return this.Ok(res);
+            if (this.ModelState.IsValid)
+            {
+                return this.Ok(res.First().Key);
+            }
+
+            return this.BadRequest(res.First().Value);
         }
     }
 }

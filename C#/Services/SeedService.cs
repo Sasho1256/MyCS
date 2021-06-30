@@ -23,11 +23,13 @@ namespace Services
     {
         private readonly MyCsDbContext context;
         private ICreditScoreService scoreService;
+        private readonly IValidationService validationService;
 
-        public SeedService(MyCsDbContext context, ICreditScoreService scoreService)
+        public SeedService(MyCsDbContext context, ICreditScoreService scoreService, IValidationService validationService)
         {
             this.context = context;
             this.scoreService = scoreService;
+            this.validationService = validationService;
         }
 
         public async Task<Dictionary<ICollection<Account>, ICollection<string>>> SeedRecords(IFormFile file)
@@ -56,7 +58,7 @@ namespace Services
                 exceptions.Add(e.InnerException != null ? e.InnerException.Message + $"{csv.Parser.Row}" : e.Message);
             }
 
-            var errors = this.ValidateBeforeDatabase(records);
+            var errors = validationService.ValidateBeforeDatabase(records);
             exceptions.AddRange(errors.Select(error => error.ErrorMessage));
 
             foreach (var item in records)
@@ -94,22 +96,6 @@ namespace Services
             file.Close();
             //FormFile file1 = new FormFile(file, 0, file.Length, "name", file.Name);
             return path;
-        }
-
-        private List<ValidationResult> ValidateBeforeDatabase(List<Account> records)
-        {
-            var errors = new List<ValidationResult>();
-            foreach (var e in records)
-            {
-                var vcAccount = new ValidationContext(e, null, null);
-                var vcClient = new ValidationContext(e.Client, null, null);
-                var vcLoan = new ValidationContext(e.Loan, null, null);
-                Validator.TryValidateObject(e, vcAccount, errors, true);
-                Validator.TryValidateObject(e.Client, vcClient, errors, true);
-                Validator.TryValidateObject(e.Loan, vcLoan, errors, true);
-            }
-
-            return errors;
         }
     }
 }

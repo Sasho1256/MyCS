@@ -12,29 +12,36 @@
     {
         private readonly MyCsDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly IValidationService validationService;
 
-        public CreditScoreService(MyCsDbContext dbContext, IMapper mapper)
+        public CreditScoreService(MyCsDbContext dbContext, IMapper mapper, IValidationService validationService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.validationService = validationService;
         }
 
-        public async Task<Account> CreateRecordFromManualInput(ManualInputModel input)
+        public async Task<Dictionary<Account, List<string>>> CreateRecordFromManualInput(ManualInputModel input)
         {
             var result = mapper.Map<Account>(input);
             result.Client = mapper.Map<Client>(input);
             result.Loan = mapper.Map<Loan>(input);
 
+            result.Account_Number = GenerateAccountNumber();
             CalculateScore(result);
 
-            dbContext.SaveChanges();
-            return result;
+            List<string> exceptions = validationService.ValidateBeforeDatabase(new List<Account> { result }).Select(x => x.ErrorMessage).ToList();
+            var dic = new Dictionary<Account, List<string>>();
+            dic.Add(result, exceptions);
+
+            await dbContext.Accounts.AddAsync(result);
+            await dbContext.SaveChangesAsync();
+            return dic;
         }
 
         public void CalculateScore(Account result)
         {
             int score = 0;
-            int Payment_Period = 0;
 
             #region Gross_Annual_Income
 
@@ -200,48 +207,68 @@
             }
             #endregion
             //==========================
-            #region Age_of_Applicant
+            #region Loan_To_Income
 
-            if (result.Client.Age_of_Applicant >= 18 && result.Client.Age_of_Applicant < 28)
-            {
-                score += 10;
-            }
-            else if (result.Client.Age_of_Applicant >= 28 && result.Client.Age_of_Applicant < 38)
-            {
-                score += 20;
-            }
-            else if (result.Client.Age_of_Applicant >= 38 && result.Client.Age_of_Applicant < 48)
-            {
-                score += 50;
-            }
-            else if (result.Client.Age_of_Applicant >= 48 && result.Client.Age_of_Applicant < 55)
-            {
-                score += 40;
-            }
-            else if (result.Client.Age_of_Applicant >= 55)
+            //if (result.Loan.Loan_To_Income == 0)
+            //{
+                if (result.Loan.Loan_Amount == 0)
+                {
+                    result.Loan.Loan_To_Income = -9999998;
+                }
+                else if (result.Client.Gross_Annual_Income == 0)
+                {
+                    result.Loan.Loan_To_Income = -9999997;
+                }
+                else
+                {
+                    double loanToIncome = (result.Loan.Loan_Amount * 1.0 / result.Client.Gross_Annual_Income * 1.0) * 100.0;
+                    result.Loan.Loan_To_Income = Math.Round(loanToIncome, 2);
+                }
+            //}
+
+
+            if (result.Loan.Loan_To_Income == -9999998)
             {
                 score += 30;
             }
+            else if (result.Loan.Loan_To_Income >= 0 && result.Loan.Loan_To_Income < 500)
+            {
+                score += 20;
+            }
+            else if (result.Loan.Loan_To_Income >= 500)
+            {
+                score += 10;
+            }
+
             #endregion
             //==========================
 
             result.Credit_Score = score;
-            if (score > 200)
+            if (score >= 200)
             {
                 result.Eligibility = true;
+            }
+            else
+            {
+                result.Eligibility = false;
             }
         }
 
         public string GenerateAccountNumber()
         {
+            List<string> acc = dbContext.Accounts.Select(x => x.Account_Number).ToList();
             List<string> nums = "1 2 3 4 5 6 7 8 9 0".Split(" ").ToList();
             Random rand = new Random();
             string accNum = "";
 
-            for (int i = 1; i <= 11; i++)
+            do
             {
-                accNum += $"{nums[rand.Next(nums.Count - 1)]}";
-            }
+                accNum = "";
+                for (int i = 1; i <= 11; i++)
+                {
+                    accNum += $"{nums[rand.Next(nums.Count - 1)]}";
+                }
+            } while (acc.Exists(x => x == accNum));
 
             return accNum;
         }

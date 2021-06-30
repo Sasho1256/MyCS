@@ -40,12 +40,10 @@ namespace MyCS.InputModels
         [Display(Name = "Electoral Role")]
         public int SP_ER_Reference { get; set; }
 
-        [Required]
         [Display(Name = "Number of searches")]
         [Range(0, int.MaxValue, ErrorMessage = "Enter a positive number.")]
         public int SP_Number_Of_Searches_L6M { get; set; }
 
-        [Required]
         [Display(Name = "Number of CCJs")]
         [Range(0, int.MaxValue, ErrorMessage = "Enter a positive number.")]
         public int SP_Number_of_CCJs { get; set; }

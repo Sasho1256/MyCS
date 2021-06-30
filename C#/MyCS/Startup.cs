@@ -44,6 +44,7 @@ namespace MyCS
             services.AddRazorPages();
             services.AddTransient<ISeedService, SeedService>();
             services.AddTransient<ICreditScoreService, CreditScoreService>();
+            services.AddTransient<IValidationService, ValidationService>();
             services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>(),
                 AppDomain.CurrentDomain.GetAssemblies());
         }
