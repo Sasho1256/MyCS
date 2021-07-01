@@ -1,16 +1,16 @@
-﻿namespace Tests
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using Database;
-    using Microsoft.EntityFrameworkCore;
-    using MyCS.InputModels;
-    using NUnit.Framework;
-    using Services;
-    using Services.Mappings;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using Database;
+using Microsoft.EntityFrameworkCore;
+using MyCS.InputModels;
+using NUnit.Framework;
+using Services;
+using Services.Mappings;
 
+namespace Tests
+{
     public class ManualFormTest
     {
         private MyCsDbContext dbContext;

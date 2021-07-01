@@ -1,16 +1,16 @@
-﻿namespace Tests.CreditScoreServiceTests
-{
-    using AutoMapper;
-    using Database;
-    using Microsoft.EntityFrameworkCore;
-    using MyCS.InputModels;
-    using NUnit.Framework;
-    using Services;
-    using Services.Mappings;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using AutoMapper;
+using Database;
+using Microsoft.EntityFrameworkCore;
+using MyCS.InputModels;
+using NUnit.Framework;
+using Services;
+using Services.Mappings;
+using System.Linq;
+using System.Threading.Tasks;
 
-    class CalculateScoreTests
+namespace Tests.CreditScoreServiceTests
+{
+    public class CalculateScoreTests
     {
         private MyCsDbContext dbContext;
         private IMapper mapper;

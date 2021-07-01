@@ -1,17 +1,18 @@
-﻿namespace Tests.Seed_Service_Tests
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using Database;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
+using Services;
+using Services.Mappings;
+
+namespace Tests.Seed_Service_Tests
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using Database;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Internal;
-    using Microsoft.EntityFrameworkCore;
-    using NUnit.Framework;
-    using Services;
-    using Services.Mappings;
 
     public class Testing
     {

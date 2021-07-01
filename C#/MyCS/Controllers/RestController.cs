@@ -1,19 +1,18 @@
-﻿namespace MyCS.Controllers
-{
-    using System.Threading.Tasks;
-    using Database;
-    using InputModels;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc;
-    using Services;
-    using Microsoft.AspNetCore.Http;
-    using System.Linq;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Net.Mime;
-    using System.Net;
+﻿using System.Threading.Tasks;
+using Database;
+using MyCS.InputModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Services;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Mime;
 
+namespace MyCS.Controllers
+{
     [ApiController]
     public class RestController : ControllerBase
     {

@@ -1,10 +1,9 @@
 ﻿using CsvHelper.Configuration.Attributes;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Database
 {
-    using System.ComponentModel.DataAnnotations;
-
     public class Loan
     {
         [Ignore]

@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCS.InputModels;
+using Microsoft.AspNetCore.Http;
+using Services;
+using System.Threading.Tasks;
 
 namespace MyCS.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using CsvHelper;
-    using Microsoft.AspNetCore.Http;
-    using Services;
-
     public class CreditScoreController : Controller
     {
         private ISeedService seeder;

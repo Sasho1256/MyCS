@@ -1,25 +1,16 @@
 ﻿using CsvHelper;
 using Database;
-using MyCS.InputModels;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System;
+using System.Collections.Generic;
+using CsvHelper.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Xml;
-    using CsvHelper.Configuration;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Internal;
-    using Microsoft.EntityFrameworkCore;
-
     public class SeedService : ISeedService
     {
         private readonly MyCsDbContext context;

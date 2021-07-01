@@ -1,9 +1,9 @@
-﻿namespace Services.Mappings
-{
-    using AutoMapper;
-    using Database;
-    using MyCS.InputModels;
+﻿using AutoMapper;
+using Database;
+using MyCS.InputModels;
 
+namespace Services.Mappings
+{
     public class MappingProfile : Profile
     {
         public MappingProfile()

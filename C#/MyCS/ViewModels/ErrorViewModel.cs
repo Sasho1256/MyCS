@@ -1,5 +1,3 @@
-using System;
-
 namespace MyCS.Models
 {
     public class ErrorViewModel

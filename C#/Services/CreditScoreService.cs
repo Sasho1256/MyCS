@@ -1,13 +1,13 @@
-﻿namespace Services
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using Database;
-    using MyCS.InputModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using Database;
+using MyCS.InputModels;
 
+namespace Services
+{
     public class CreditScoreService : ICreditScoreService
     {
         private readonly MyCsDbContext dbContext;

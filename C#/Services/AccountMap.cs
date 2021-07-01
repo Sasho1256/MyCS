@@ -1,13 +1,10 @@
 ﻿using CsvHelper.Configuration;
 using Database;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace Services
 {
-    using CsvHelper;
-
     public sealed class AccountMap : ClassMap<Account>
     {
         public AccountMap()
