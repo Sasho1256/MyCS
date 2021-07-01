@@ -58,7 +58,7 @@ namespace Services
                 scoreService.CalculateScore(item);
             }
 
-            if (errors.Count == 0)
+            if (errors.Count == 0 && !this.context.Accounts.Contains(records.First()))
             {
                 try
                 {

@@ -13,6 +13,7 @@ using System.Net.Mime;
 
 namespace MyCS.Controllers
 {
+
     [ApiController]
     public class RestController : ControllerBase
     {
@@ -36,14 +37,10 @@ namespace MyCS.Controllers
                 return this.RedirectToAction("Bulk", "CreditScore");
             }
             var dictionary = await this.seedService.SeedRecords(csv, ".\\wwwroot\\UploadedFiles\\");
-            if (dictionary.First().Value.Count != 0)
+            if (dictionary.First().Key.Count == 0)
             {
-                return this.BadRequest(new
-                {
-                    dictionary.First().Value
-                });
+                return this.BadRequest("Empty File");
             }
-
             try
             {
                 if (!string.IsNullOrWhiteSpace(Request.Form["Json"]))
