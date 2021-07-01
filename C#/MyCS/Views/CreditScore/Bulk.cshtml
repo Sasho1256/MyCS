@@ -1,86 +1,113 @@
 @using MyCS.InputModels
 @model Microsoft.AspNetCore.Http.IFormFile
 @{
-    ViewData["Title"] = "Seed data";
+	ViewData["Title"] = "Seed data";
 }
 
 <body>
-    <style>
-        body {
-            background: url("../img/finance2.jpg") no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+	<style>
+		body {
+			background: url("../img/finance2.jpg") no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
 
-        #input_form {
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(5px);
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-            padding: 50px;
-            margin: auto;
-        }
+		#input_form {
+			background: rgba(255,255,255,0.85);
+			backdrop-filter: blur(5px);
+			border-bottom-left-radius: 25px;
+			border-bottom-right-radius: 25px;
+			padding: 50px;
+			margin: auto;
+		}
 
-        #drop_zone {
-            background: white;
-            border-radius: 25px;
-            border: 5px solid #1b6ec2;
-            /*width: 400px;*/
-            height: 220px;
-            text-align: center;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            order: 1;
-        }
+		#drop_zone {
+			background: white;
+			border-radius: 25px;
+			border: 5px solid #1b6ec2;
+			/*width: 400px;*/
+			height: 220px;
+			text-align: center;
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			order: 1;
+		}
 
-        #input_zone {
-            border-radius: 20px;
-            border: 1px solid #b1b1b1;
-            /*width: 390px;*/
-            height: 154px;
-            text-align: center;
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            cursor: pointer;
-            /*padding-left: 90px;
-            padding-top: 50px;*/
-            padding: 50px;
-            order: 2;
-        }
+		#input_zone {
+			border-radius: 20px;
+			border: 1px solid #b1b1b1;
+			/*width: 390px;*/
+			height: 154px;
+			text-align: center;
+			border-top-left-radius: 0px;
+			border-top-right-radius: 0px;
+			cursor: pointer;
+			/*padding-left: 90px;
+			padding-top: 50px;*/
+			padding: 50px;
+			order: 2;
+		}
 
-        .btn, h1, #sub_but_div {
-            border-radius: 25px;
-            text-align: center;
-        }
+		.btn, h1, #sub_but_div {
+			border-radius: 25px;
+			text-align: center;
+		}
 
 		.container {
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
 		}
-    </style>
-    <div class="container">
-        <form id="input_form" asp-controller="Rest" asp-action="CalculateScoreCsv" method="post" enctype="multipart/form-data">
-            <h1 class="display-4">
-                Bulk Check
-            </h1>
-            <br />
-            <div id="drop_zone" class="form-group">
 
-                <p></p>
-                <p>
-                    Drag a .CSV file into this drop zone:
-                </p>
-                <input id="input_zone" type="file" asp-for="@Model" name="file" class="form-control" accept=".csv"/>
-            </div>
-            <br />
-            <div id="sub_but_div">
-                <input id="submit_btn" type="submit" name="Json" value="Data" class="btn btn-primary" />
-                <input id="submit_btn" type="submit" name="Csv" value="Csv"  class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+		#Div2 {
+			background: rgba(255,255,255,0.85);
+			backdrop-filter: blur(5px);
+			border-bottom-left-radius: 25px;
+			border-bottom-right-radius: 25px;
+			padding: 50px;
+			margin: auto;
+			display: none
+		}
+	</style>
+	<div id="Div1" class="container">
+		<form id="input_form" asp-controller="Rest" asp-action="CalculateScoreCsv" method="post" enctype="multipart/form-data">
+			<h1 class="display-4">
+				Bulk Check
+			</h1>
+			<br />
+			<div id="drop_zone" class="form-group">
+
+				<p></p>
+				<p>
+					Drag a .CSV file into this drop zone:
+				</p>
+				<input id="input_zone" type="file" asp-for="@Model" name="file" class="form-control" accept=".csv" />
+			</div>
+			<br />
+			<div id="sub_but_div">
+				<input id="submit_btn" onclick="switchVisible()" type="submit" name="CSV" value="CSV" class="btn btn-primary" />
+				<input id="submit_btn" onclick="switchVisible()" type="submit" name="Json" value="Data" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+	<div id="Div2" class="loader"></div>
+
+	<script>
+		function switchVisible() {
+			if (document.getElementById('Div1')) {
+
+				if (document.getElementById('Div1').style.display == 'none') {
+					document.getElementById('Div1').style.display = 'block';
+					document.getElementById('Div2').style.display = 'none';
+				}
+				else if (document.getElementById('Div2').style.display == 'none') {
+					document.getElementById('Div1').style.display = 'none';
+					document.getElementById('Div2').style.display = 'block';
+				}
+			}
+		}
+	</script>
 </body>

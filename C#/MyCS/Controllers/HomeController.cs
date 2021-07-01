@@ -25,6 +25,11 @@ namespace MyCS.Controllers
             return View();
         }
 
+        public IActionResult Loading()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(List<string> exceptions)
         {

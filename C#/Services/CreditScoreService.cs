@@ -245,7 +245,7 @@ namespace Services
             //==========================
 
             result.Credit_Score = score;
-            if (score >= 200)
+            if (score >= 270)
             {
                 result.Eligibility = true;
             }

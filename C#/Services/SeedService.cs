@@ -82,7 +82,8 @@ namespace Services
             var outputRecords = accounts.Select(x => new
             {
                 x.Account_Number,
-                x.Credit_Score
+                x.Credit_Score,
+                x.Eligibility
             }).ToList();
             using var csv = new CsvWriter(file, CultureInfo.InvariantCulture);
             csv.WriteRecords(outputRecords);

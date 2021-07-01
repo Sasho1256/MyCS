@@ -31,6 +31,10 @@ namespace MyCS.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> CalculateScoreCsv([FromForm(Name = "file")] IFormFile csv)
         {
+            if (csv == null)
+            {
+                return this.RedirectToAction("Bulk", "CreditScore");
+            }
             var dictionary = await this.seedService.SeedRecords(csv, ".\\wwwroot\\UploadedFiles\\");
             if (dictionary.First().Value.Count != 0)
             {
@@ -49,7 +53,7 @@ namespace MyCS.Controllers
                         dictionary.First().Key
                     });
                 }
-                else if (!string.IsNullOrWhiteSpace(Request.Form["Csv"]))
+                else if (!string.IsNullOrWhiteSpace(Request.Form["CSV"]))
                 {
                     var filePath = this.seedService.UpdatedCsvFile(dictionary.First().Key, $"{Directory.GetCurrentDirectory()}\\wwwroot\\Results\\{ DateTime.Now.ToString("yyyyMMddHHmmss") }_results_{csv.FileName}");
                     var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
@@ -76,7 +80,7 @@ namespace MyCS.Controllers
                 {
                     return this.Ok(res.First().Key);
                 }
-                else if (!string.IsNullOrWhiteSpace(Request.Form["Csv"]))
+                else if (!string.IsNullOrWhiteSpace(Request.Form["CSV"]))
                 {
                     var filePath = this.seedService.UpdatedCsvFile(new List<Account>(){ res.First().Key }, $"{Directory.GetCurrentDirectory()}\\wwwroot\\Results\\{ DateTime.Now.ToString("yyyyMMddHHmmss") }_results_single.csv");
                     var bytes = await System.IO.File.ReadAllBytesAsync(filePath);

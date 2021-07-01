@@ -57,11 +57,11 @@
             </h1>
             <br />
 
-            <div class="row">
+            @*<div class="row">
                 <div class="col"><hr></div>
                 <div class="col-auto">Personal information</div>
                 <div class="col"><hr></div>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <label asp-for="Age_of_Applicant"></label>
@@ -103,11 +103,11 @@
             </select><br>
             <span asp-validation-for="Residential_Status" class="text-danger"></span><br>
 
-            <div class="row">
+            @*<div class="row">
                 <div class="col"><hr></div>
                 <div class="col-auto">Financial information</div>
                 <div class="col"><hr></div>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <label asp-for="Number_of_Dependants"></label>
@@ -115,11 +115,11 @@
                 <span asp-validation-for="Number_of_Dependants" class="text-danger"></span>
             </div>
 
-            <div class="row">
+            @*<div class="row">
                 <div class="col"><hr></div>
                 <div class="col-auto">Loan information</div>
                 <div class="col"><hr></div>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <label asp-for="Loan_Amount"></label>
@@ -137,8 +137,8 @@
 
             <br />
             <div id="sub_but_div">
+                <input id="submit_btn" type="submit" name="CSV" value="CSV" class="btn btn-primary" />
                 <input id="submit_btn" type="submit" name="Json" value="Data" class="btn btn-primary" />
-                <input id="submit_btn" type="submit" name="Csv" value="Csv" class="btn btn-primary" />
             </div>
         </form>
     </div>
