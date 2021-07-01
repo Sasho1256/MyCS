@@ -88,26 +88,9 @@
 			</div>
 			<br />
 			<div id="sub_but_div">
-				<input id="submit_btn" onclick="switchVisible()" type="submit" name="CSV" value="CSV" class="btn btn-primary" />
-				<input id="submit_btn" onclick="switchVisible()" type="submit" name="Json" value="Data" class="btn btn-primary" />
+				<input id="submit_btn" type="submit" name="CSV" value="CSV" class="btn btn-primary" />
+				<input id="submit_btn" type="submit" name="Json" value="Data" class="btn btn-primary" />
 			</div>
 		</form>
 	</div>
-	<div id="Div2" class="loader"></div>
-
-	<script>
-		function switchVisible() {
-			if (document.getElementById('Div1')) {
-
-				if (document.getElementById('Div1').style.display == 'none') {
-					document.getElementById('Div1').style.display = 'block';
-					document.getElementById('Div2').style.display = 'none';
-				}
-				else if (document.getElementById('Div2').style.display == 'none') {
-					document.getElementById('Div1').style.display = 'none';
-					document.getElementById('Div2').style.display = 'block';
-				}
-			}
-		}
-	</script>
 </body>
