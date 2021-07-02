@@ -58,7 +58,8 @@ namespace Services
                 scoreService.CalculateScore(item);
             }
 
-            bool isSuperset = new HashSet<Account>(this.context.Accounts).IsSupersetOf(records);
+            var allAccounts = this.context.Accounts.Select(x => x.Account_Number).ToList();
+            bool isSuperset = new HashSet<string>(allAccounts).IsSupersetOf(records.Select(x => x.Account_Number));
 
             if (errors.Count == 0 && !isSuperset)
             {
