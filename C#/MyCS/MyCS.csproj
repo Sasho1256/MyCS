@@ -27,11 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Results\" />
-    <Folder Include="wwwroot\UploadedFiles\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\css\custom.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -50,6 +45,11 @@
     <Content Update="wwwroot\img\flame-payment-processed-2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Results\" />
+    <Folder Include="wwwroot\UploadedFiles\" />
   </ItemGroup>
 
 </Project>

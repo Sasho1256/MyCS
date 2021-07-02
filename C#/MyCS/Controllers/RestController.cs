@@ -36,13 +36,14 @@ namespace MyCS.Controllers
             {
                 return this.RedirectToAction("Bulk", "CreditScore");
             }
-            var dictionary = await this.seedService.SeedRecords(csv, ".\\wwwroot\\UploadedFiles\\");
-            if (dictionary.First().Key.Count == 0)
-            {
-                return this.BadRequest("Empty File");
-            }
+            Dictionary<ICollection<Account>, ICollection<string>> dictionary = new Dictionary<ICollection<Account>, ICollection<string>>();
             try
             {
+                dictionary = await this.seedService.SeedRecords(csv, ".\\wwwroot\\UploadedFiles\\");
+                if (dictionary.First().Value.Count != 0)
+                {
+                    throw new Exception("An error occured.");
+                }
                 if (!string.IsNullOrWhiteSpace(Request.Form["Json"]))
                 {
                     return this.Ok(new
@@ -62,7 +63,10 @@ namespace MyCS.Controllers
             catch (Exception ex)
             {
                 dictionary.First().Value.Add(ex.Message);
-                return RedirectToAction("Error", "Home", new { exceptions = dictionary.First().Value });
+                return this.BadRequest(new
+                {
+                    dictionary.First().Value
+                });
             }
         }
 
