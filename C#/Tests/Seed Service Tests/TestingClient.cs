@@ -53,12 +53,10 @@ namespace Tests.Seed_Service_Tests
                 var seedService = new SeedService(dbContext, creditScoreService, validationService);
                 var exceptions = await seedService.SeedRecords(file, Directory.GetCurrentDirectory());
                 var message = exceptions.First().Value.ToList();
-                //Assert.AreEqual(exceptions.Count, 1);
-                //Assert.AreEqual(message, "Final_Decision should be Accept or Decline.");
 
                 var exceptionsM = new List<string>()
             {
-                "Current_Delinquency_status must be a 0, 1 or null.",
+                "Current_Delinquency_status must be between 0 and 10 or null.",
                 "Application Score must be a positive number.",
                 "Gross annual income must be between 0 and 1 million.",
                 "Home_Telephone_Number should be Y, N or empty space (null).",
@@ -69,8 +67,7 @@ namespace Tests.Seed_Service_Tests
                 "Time_in_Employment should be between 0 and 29200.",
                 "Time_with_Bank should be between 0 and 29200.",
                 "GB_Flag should be Good, Bad, Indeterminate, NTU or Rejects.",
-                "Age_of_Applicant should be between 18 and 90.",
-                "Application_Month should be between 1 and 12."
+                "Age_of_Applicant should be between 18 and 90."
             };
 
                 bool isSuperset = new HashSet<string>(exceptionsM).IsSupersetOf(message);

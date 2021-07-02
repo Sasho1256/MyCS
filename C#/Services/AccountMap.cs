@@ -49,7 +49,7 @@ namespace Services
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message + $"Exception occured at column Application_Date in row ");
+                throw new Exception($"Exception occured at column Application_Date in row ");
             }
             
             return a;

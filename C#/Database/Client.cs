@@ -12,7 +12,6 @@ namespace Database
         public int Id { get; set; }
 
         [Range(0, 10, ErrorMessage = "Current_Delinquency_status must be between 0 and 10 or null.")]
-        //[RegularExpression(@"0|1|(\s)", ErrorMessage = "Current_Delinquency_status must be a 0, 1 or null.")]
         public int? Current_Delinquency_status { get; set; }
 
         [DataType(DataType.Date)]
