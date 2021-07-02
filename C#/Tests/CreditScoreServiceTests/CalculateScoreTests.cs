@@ -76,7 +76,7 @@ namespace Tests.CreditScoreServiceTests
             bool? elg = dictionary.First().Key.Eligibility;
 
             Assert.AreEqual(210, crSc);
-            Assert.AreEqual(true, elg);
+            Assert.AreEqual(false, elg);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace Tests.CreditScoreServiceTests
             bool? elg = dictionary.First().Key.Eligibility;
 
             Assert.AreEqual(240, crSc);
-            Assert.AreEqual(true, elg);
+            Assert.AreEqual(false, elg);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace Tests.CreditScoreServiceTests
             bool? elg = dictionary.First().Key.Eligibility;
 
             Assert.AreEqual(210, crSc);
-            Assert.AreEqual(true, elg);
+            Assert.AreEqual(false, elg);
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace Tests.CreditScoreServiceTests
             bool? elg = dictionary.First().Key.Eligibility;
 
             Assert.AreEqual(220, crSc);
-            Assert.AreEqual(true, elg);
+            Assert.AreEqual(false, elg);
         }
 
         [Test]
@@ -168,7 +168,7 @@ namespace Tests.CreditScoreServiceTests
             bool? elg = dictionary.First().Key.Eligibility;
 
             Assert.AreEqual(200, crSc);
-            Assert.AreEqual(true, elg);
+            Assert.AreEqual(false, elg);
         }
 
         [Test]
