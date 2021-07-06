@@ -49,14 +49,19 @@ namespace Services
             {
                 exceptions.Add(e.InnerException != null ? e.InnerException.Message + $"{csv.Parser.Row}" : e.Message);
             }
+            foreach (var item in records)
+            {
+                if (item.Account_Number == null)
+                {
+                    item.Account_Number = GenerateAccountNumber();
+                }
 
+                scoreService.CalculateScore(item);
+            }
             var errors = validationService.ValidateBeforeDatabase(records);
             exceptions.AddRange(errors.Select(error => error.ErrorMessage));
 
-            foreach (var item in records)
-            {
-                scoreService.CalculateScore(item);
-            }
+            
 
             var allAccounts = this.context.Accounts.Select(x => x.Account_Number).ToList();
             bool isSuperset = new HashSet<string>(allAccounts).IsSupersetOf(records.Select(x => x.Account_Number));
@@ -91,6 +96,25 @@ namespace Services
             using var csv = new CsvWriter(file, CultureInfo.InvariantCulture);
             csv.WriteRecords(outputRecords);
             return path;
+        }
+
+        private string GenerateAccountNumber()
+        {
+            List<string> acc = this.context.Accounts.Select(x => x.Account_Number).ToList();
+            List<string> nums = "1 2 3 4 5 6 7 8 9 0".Split(" ").ToList();
+            Random rand = new Random();
+            string accNum = "";
+
+            do
+            {
+                accNum = "";
+                for (int i = 1; i <= 11; i++)
+                {
+                    accNum += $"{nums[rand.Next(nums.Count - 1)]}";
+                }
+            } while (acc.Exists(x => x == accNum));
+
+            return accNum;
         }
     }
 }

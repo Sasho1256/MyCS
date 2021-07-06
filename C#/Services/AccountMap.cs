@@ -12,7 +12,7 @@ namespace Services
             AutoMap(CultureInfo.InvariantCulture);
             Map(x => x.Account_Number).Validate(x => CreateExceptionMessage("Account_Number", x.Field.Length != 11, "Account Number should be 11 symbols long. "));
             //client
-            Map(m => m.Client.Application_Date).Name("Application_Date").Convert(x => ConvertStringToDateTime(x.Row[4]));
+            //Map(m => m.Client.Application_Date).Name("Application_Date").Convert(x => ConvertStringToDateTime(x.Row[4]));
             Map(m => m.Client.Current_Delinquency_status).Name("Current_Delinquency_status");
             Map(c => c.Client.Application_Score).Name("Application_Score");
             Map(c => c.Client.Gross_Annual_Income).Name("Gross_Annual_Income");
@@ -25,7 +25,7 @@ namespace Services
             Map(c => c.Client.Time_with_Bank).Name("Time_with_Bank");
             Map(c => c.Client.GB_Flag).Name("GB_Flag");
             Map(c => c.Client.Age_of_Applicant).Name("Age_of_Applicant");
-            Map(c => c.Client.Application_Month).Name("Application_Month").Convert(x => ConvertStringToDateTime(x.Row[4]).Month);
+            //Map(c => c.Client.Application_Month).Name("Application_Month").Convert(x => ConvertStringToDateTime(x.Row[4]).Month);
             //loan
             Map(c => c.Loan.Loan_Amount).Name("Loan_Amount");
             Map(c => c.Loan.Loan_Payment_Frequency).Name("Loan_Payment_Frequency");

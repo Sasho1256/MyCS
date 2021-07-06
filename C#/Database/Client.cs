@@ -50,8 +50,7 @@ namespace Database
         [Range(18, 100, ErrorMessage = "Age_of_Applicant should be between 18 and 90.")]
         public int Age_of_Applicant { get; set; }
 
-        [Range(1,12, ErrorMessage = "Application_Month should be between 1 and 12.")]
-        public int Application_Month { get; set; }
+        public int? Application_Month { get; set; }
     }
 
 }
